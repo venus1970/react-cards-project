@@ -1,19 +1,21 @@
-import { Typography, Box, Divider, useTheme } from "@mui/material";
+import { Typography, Box, Divider, useTheme, Avatar } from "@mui/material";
 import React from "react";
 import PageHeader from "../components/PageHeader";
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import Map from "../cards/pages/Map";
 
 export default function AboutPage() {
-  const theme = useTheme();
-
+  const theme = useTheme();  
   return (
     <div>
       <PageHeader
         title="About Page"
         subtitle="On this page you can find explanations about using the application"
       />
-      
-      <Box sx={{ backgroundColor: theme.palette.mode === 'dark' ? '#121212' : '#f0f0f0', color: theme.palette.mode === 'dark' ? '#ffffff' : '#000000', padding: '20px' }}>
+     
+      <Box sx={{  minHeight: '90vh', backgroundColor: theme.palette.mode === 'dark' ? '#121212' : '#f0f0f0', color: theme.palette.mode === 'dark' ? '#ffffff' : '#000000', padding: '20px' }}>
+
+        
         <Typography variant="body1" >
           <strong>React Business Card Project: Explained Introduction, Key Functionality, and Conclusion</strong>
           <br />
@@ -41,7 +43,7 @@ export default function AboutPage() {
               <strong>Dynamic Navigation:</strong> The application features a dynamic navigation menu that adjusts based on the user's role and permissions, providing intuitive access to various sections of the application.
             </li>
           </ol>
-          <br />
+         
           <strong>Conclusion</strong>
           <br />
           The React Business Card Project offers a comprehensive solution for managing business contacts effectively. With its user-friendly interface, robust authentication system, and advanced features such as role-based access control and favorite cards management, the project caters to the needs of both individual users and businesses. Whether you're a professional looking to organize your contacts or an organization seeking to streamline communication, this project provides the tools you need to succeed.
@@ -51,6 +53,28 @@ export default function AboutPage() {
             <FavoriteIcon key={index} color="error" fontSize="large" />
           ))}
         </Divider>
+          <img src="assets/images/about_us.jpg" alt="about" style={{ maxWidth: '100%', display: 'block', margin: '0 auto', border: '3px solid #ccc', borderRadius: '20px' }} />
+      </Box>
+       <Box 
+        sx={{ 
+          width: {xs:"90%",md:"50%"},
+          height: "400px",
+          border:5,
+          borderColor:"white",
+          mt:2,
+          mb:2
+        }}>
+          
+        <Map
+          center={[51.505, -0.09]}
+          zoom={14}
+          address={"Haifa, Kiriyat yam"}
+        />
+         <Avatar
+          src="/assets/images/card.jpg" 
+          alt="card"
+          sx={{ width:"40%", height:"40%" ,borderRadius:1}}
+        />
       </Box>
     </div>
   );

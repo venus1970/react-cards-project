@@ -6,6 +6,7 @@ import { useUser } from '../../users/providers/UserProvider'
 import { useNavigate } from 'react-router-dom'
 import ROUTES from '../../routes/routesModel'
 import CardsFeedback from '../components/CardsFeedback'
+import { Box } from '@mui/material'
 
 export default function MyCards() {
   const {
@@ -35,6 +36,7 @@ export default function MyCards() {
 
   return (
       <div>
+        <Box sx={{  minHeight: '90vh', m: 1, display: { xs: "none", md: "block" } }}>
         <PageHeader
           title="My Cards"
           subtitle="On this page you can find all My created Cards"
@@ -47,6 +49,7 @@ export default function MyCards() {
           handleLike={handleCardLike}
         />
         <AddNewCardButton/>
+        </Box>
       </div>
   )
 }

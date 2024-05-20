@@ -27,7 +27,7 @@ export default function SignupPage() {
 
   if (user) return <Navigate to={ROUTES.ROOT} replace />;
   return (
-
+<div>
 
     <Container
     sx={{
@@ -60,5 +60,6 @@ export default function SignupPage() {
       />
     </Container>
     </Container>
+    </div>
   );
 }

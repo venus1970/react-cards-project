@@ -105,12 +105,13 @@ const handleUpdateCard = useCallback(
 const handleGetMyCards = useCallback(async () => {
   try {
     const cards = await getMyCards();
-    setCards(cards)
+    setCards(cards)  
+    cards.filter((card)=>card.user_id === (user._id))
   } catch (error) {
     setError(error.message)
   }
   setIsLoading(false)
-}, []);
+}, [ user ]);
 
 const handleGetFavCards= useCallback(async()=>{
   try {
@@ -122,6 +123,7 @@ const handleGetFavCards= useCallback(async()=>{
   }
   setIsLoading(false)
 },[user])
+
 
 const handleDeleteCard = useCallback(async (id)=>{
   try {

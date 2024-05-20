@@ -32,7 +32,7 @@ Responsive Design
 The project utilizes either Bootstrap or Material Design for responsive design, ensuring optimal display across various devices and screen sizes.
 
 Installation and Usage
-Clone the repository: git clone <repository-url>
+Clone the repository: git clone <https://github.com/venus1970/react-cards-project/tree/main/cards-d10092023er>
 Install dependencies: npm install
 Start the development server: npm start
 Access the application in your browser at http://localhost:3000

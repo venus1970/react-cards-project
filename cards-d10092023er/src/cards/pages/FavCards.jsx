@@ -6,6 +6,7 @@ import ROUTES from '../../routes/routesModel'
 import PageHeader from '../../components/PageHeader'
 import CardsFeedback from '../components/CardsFeedback'
 import AddNewCardButton from '../components/AddNewCardButton'
+import { Box } from '@mui/material'
 
 export default function FavCards() {
     const {
@@ -43,6 +44,7 @@ export default function FavCards() {
           title="Favorite Cards"
           subtitle="On this page you can find all my favorite cards from all categories"
         />
+        <Box sx={{  minHeight: '90vh', m: 1, display: { xs: "none", md: "block" } }}>
         <CardsFeedback
           isLoading={isLoading}
           error={error}
@@ -51,6 +53,7 @@ export default function FavCards() {
           handleLike={handleLike}
         />
         <AddNewCardButton/>
+      </Box>
       </div>
   );
 };
