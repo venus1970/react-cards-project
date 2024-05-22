@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import ROUTES from "./routesModel";
@@ -21,11 +20,13 @@ import Window from "../sandbox/Window";
 import FormExample from "../sandbox/FormExample";
 import SignupPage from "../users/pages/SignupPage";
 import LoginPage from "../users/pages/LoginPage";
+import UserProfile from '../users/pages/UserProfile';
 import ParentComponent from "../sandbox/optimization/ParentComponent";
 import ParentComponentPage from "../sandbox/context/ParentComponentPage";
 import AddCardPage from "../cards/pages/AddCardPage";
 import EditCardPage from "../cards/pages/EditCardPage";
 import MapPage from "../sandbox/map/MapPage";
+import EditUserPage from '../users/pages/EditUserPage';
 
 export default function Router() {
   return (
@@ -38,6 +39,9 @@ export default function Router() {
       <Route path={ROUTES.CARD_INFO + "/:id"} element={<CardDetailsPage />} />
       <Route path={ROUTES.SIGNUP} element={<SignupPage />} />
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+       <Route path={ROUTES.USER_PROFILE} element={<UserProfile/>}/>
+        <Route path={ROUTES.EDIT_USER} element={<EditUserPage/>}/>
+  <Route path="map" element={<MapPage />} />
       <Route path={ROUTES.CREATE_CARD} element={<AddCardPage />} />
       <Route path={ROUTES.EDIT_CARD + "/:id"} element={<EditCardPage />} />
 
@@ -54,7 +58,7 @@ export default function Router() {
         <Route path="formexample" element={<FormExample />} />
         <Route path="optimization" element={<ParentComponent />} />
         <Route path="context" element={<ParentComponentPage />} />
-        <Route path="map" element={<MapPage />} />
+      
       </Route>
       <Route path="*" element={<ErrorPage />} />
     </Routes>

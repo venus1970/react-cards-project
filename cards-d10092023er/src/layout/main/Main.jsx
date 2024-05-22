@@ -7,7 +7,7 @@ export default function Main({ children }) {
   return (
     <Box
       sx={{
-        minHeight: "85vh",
+        minHeight: "90vh",
         backgroundColor: isDark ? "#333333" : "#e3f2fd",
       }}
     >

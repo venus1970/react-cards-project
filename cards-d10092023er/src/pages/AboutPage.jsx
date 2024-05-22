@@ -13,7 +13,7 @@ export default function AboutPage() {
         subtitle="On this page you can find explanations about using the application"
       />
      
-      <Box sx={{  minHeight: '90vh', backgroundColor: theme.palette.mode === 'dark' ? '#121212' : '#f0f0f0', color: theme.palette.mode === 'dark' ? '#ffffff' : '#000000', padding: '20px' }}>
+      <Box sx={{   backgroundColor: theme.palette.mode === 'dark' ? '#121212' : '#f0f0f0', color: theme.palette.mode === 'dark' ? '#ffffff' : '#000000', padding: '20px' }}>
 
         
         <Typography variant="body1" >
@@ -65,7 +65,7 @@ export default function AboutPage() {
           mb:2
         }}>
           
-        <Map
+        <Map 
           center={[51.505, -0.09]}
           zoom={14}
           address={"Haifa, Kiriyat yam"}

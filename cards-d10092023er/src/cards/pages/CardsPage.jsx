@@ -32,7 +32,8 @@ export default function CardsPage() {
     <div>
       <PageHeader
         title="Business Cards"
-        subtitle="On this page you can find all business cards from all categories"
+        subtitle ="On this page you can find all business cards from all categories"
+        
       />
         <CardsFeedback  
         isLoading={isLoading}

@@ -29,3 +29,12 @@ export const getUserData = async (id) => {
     throw new Error(error.message);
   }
 };
+
+  export const editUser = async (userId, normalizeEditUser) => {
+    try {
+      const { data } = await axios.put(`${apiUrl}/${userId}`, normalizeEditUser);
+      return data;
+    } catch (error) {
+      return Promise.reject(error.message);
+    }
+  };

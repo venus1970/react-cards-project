@@ -17,6 +17,7 @@ export default function SignupForm({
   const theme = useTheme();
 
   return (
+    
     <Box
       sx={{
         backgroundColor: theme.palette.mode === 'dark' ? '#121212' : '#FFFFE0',
@@ -170,5 +171,6 @@ export default function SignupForm({
         </Grid>
       </Form>
     </Box>
+   
   );
 }

@@ -9,6 +9,7 @@ import { Navigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
 import useUsers from "../hooks/useUsers";
 import PageHeader from "../../components/PageHeader";
+import { Box } from "@mui/material";
 
 export default function SignupPage() {
   const { handleSignup } = useUsers();
@@ -29,7 +30,7 @@ export default function SignupPage() {
   return (
 <div>
 
-    <Container
+    <Box
     sx={{
         paddingTop: 4
     }}
@@ -59,7 +60,7 @@ export default function SignupPage() {
         handleChangeCheckBox={handleChangeCheckBox}
       />
     </Container>
-    </Container>
+    </Box>
     </div>
   );
 }
