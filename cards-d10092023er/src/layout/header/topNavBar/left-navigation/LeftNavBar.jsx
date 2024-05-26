@@ -46,6 +46,14 @@ export default function LeftNavBar() {
    <Box sx={{display:"flex", alignItems:"center"}}>
      <LogoIcon/>
      <Logo/>
+
+
+       <Box sx={{display:{xs:"none", sm:"flex"}}}>
+         <NavItem 
+           to={ROUTES.ABOUT} 
+           label='About' 
+           sx={{color: isDark ? "white" : "black"}}/>
+
      <Box sx={{display:{xs:"none",sm:"inline-flex"}}}>
      <NavItem 
        to={ROUTES.CARDS} 
@@ -53,29 +61,29 @@ export default function LeftNavBar() {
        sx={{color: isDark ? "white" : "black"}}/>
 
      
-        <Box sx={{display:{xs:"none", sm:"flex"}}}>
-          <NavItem 
-            to={ROUTES.ABOUT} 
-            label='About' 
-            sx={{color: isDark ? "white" : "black"}}/>
-        </Box>
-
+     </Box>
      {user && user.isBusiness && 
        <NavItem 
          to={ROUTES.MY_CARDS} 
-         label="My cards" 
+         label="My Cards" 
          sx={{color: isDark ? "white" : "black"}}/>}
 
      {user &&  
        <NavItem
          to={ROUTES.FAV_CARDS} 
-         label="Favorites" 
+         label="Fav Cards" 
          sx={{color: isDark ? "white" : "black"}}/>}
 
      {user && user.isAdmin && 
        <NavItem
          to={ROUTES.SANDBOX} 
          label="Sandbox" 
+         sx={{color: isDark ? "white" : "black"}}/>}
+
+          {user && user.isAdmin && 
+       <NavItem
+         to={ROUTES.ADMIN_CRM_PANEL} 
+         label="AdminCrmPanel" 
          sx={{color: isDark ? "white" : "black"}}/>}
      </Box>
     </Box>

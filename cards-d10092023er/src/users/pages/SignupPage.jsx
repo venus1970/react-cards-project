@@ -9,8 +9,7 @@ import { Navigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
 import useUsers from "../hooks/useUsers";
 import PageHeader from "../../components/PageHeader";
-import { Box } from "@mui/material";
-
+import Box from "@mui/material/Box";
 export default function SignupPage() {
   const { handleSignup } = useUsers();
 
@@ -28,8 +27,8 @@ export default function SignupPage() {
 
   if (user) return <Navigate to={ROUTES.ROOT} replace />;
   return (
-<div>
 
+<div>
     <Box
     sx={{
         paddingTop: 4

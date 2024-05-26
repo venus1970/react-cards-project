@@ -24,6 +24,7 @@ const Error = ({ errorMessage }) => {
           borderRadius: '10px',
           boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)',
         }}
+        
       >
         <Grid container spacing={2} justifyContent="center">
           <Grid item xs={12} md={8} sx={{ textAlign: 'center' }}>

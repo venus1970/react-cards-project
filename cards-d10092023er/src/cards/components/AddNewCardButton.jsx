@@ -3,15 +3,23 @@ import AddIcon from "@mui/icons-material/Add";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
+import { useUser } from "../../users/providers/UserProvider";
+
 
 export default function AddNewCardButton() {
   const navigate = useNavigate();
   const theme = useTheme();
+  const { user } = useUser();
+  const isdark = useTheme()
 
   return (
+    <>
+    {user && (user.isBusiness || user.isAdmin) &&
     <Fab
-      color="primary"
+      //color="primary"
+          color={isdark ? "white" : "primary"}
       aria-label="add"
+      title="Add new card"
       sx={{
         position: "fixed",
         bottom: 75,
@@ -30,6 +38,7 @@ export default function AddNewCardButton() {
       }}
     >
       <AddIcon sx={{ color: theme.palette.mode === "dark" ? "#000000" : "#0000FF" }} /> 
-    </Fab>
+    </Fab>}
+    </>
   );
 }

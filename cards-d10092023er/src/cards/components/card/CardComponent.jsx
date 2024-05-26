@@ -46,6 +46,9 @@ export default function CardComponent({
         handleCardDelete={handleCardDelete}
         cardId={card._id}
         userId={card.user_id}
+        likes={card.likes}
+       
+        phone={card.phone}        
       />
     </Card>
   );

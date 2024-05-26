@@ -11,6 +11,8 @@ Axios: Promise-based HTTP client for making HTTP requests from the browser.
 JWT (JSON Web Tokens): Standard for creating JSON-based access tokens for user authentication.
 Google Maps API: API for embedding Google Maps on web pages.
 Features.
+ConvertICO is a free online PNG to ICO file converter. It is used to convert Desktop Icons, App Icons as well as the much needed favicons for websites.
+ 
 Dynamic Navigation Menu: The navigation menu adjusts dynamically based on the user's permissions. It includes a search field and a toggle for switching between light and dark mode.
 
 Authentication: Users can register and log in to the application securely. Password fields enforce complexity requirements to enhance security.
@@ -22,6 +24,13 @@ User Management: Admin users have access to a CRM system for managing user accou
 Favorite Business Cards: Users can mark business cards as favorites, and a dedicated page displays all favorite cards. Users can also remove cards from their favorites list.
 
 Accessibility: The application adheres to accessibility standards by including appropriate titles, alt attributes for images, and visual cues for form validation.
+Accessibility: Accessibility in React projects is crucial for ensuring that web applications are usable by everyone, including those with disabilities. This web application is more inclusive and usable for all users, regardless of their abilities or assistive technologies. Here's an explanation of various accessibility concepts in this React project:
+Alt Text: Alt text, or alternative text, is used to describe the content of an image. It is essential for users who are visually impaired or for situations where images cannot be loaded. In React, you can include alt text in JSX using the alt attribute of the img element.
+Labels: Proper labeling of interactive elements, such as form fields and buttons, is vital for screen reader users to understand the purpose of each element. The project uses the htmlFor attribute with the label element to associate a label with its corresponding form control.
+Titles: Titles for web pages and components help users navigate and understand the content better. You can set the title of a component using the document.title property or the title attribute on specific elements.
+Favicon: A favicon is the small icon displayed in the browser tab or next to the URL in the address bar. A favicon helps users identify your website easily when multiple tabs are open.
+
+Dark and light mode: The users have the option to choose between dark and light mode.
 
 Bonus Features
 User Profile Editing: Logged-in users can edit their profile details, such as name, email, and password, providing a personalized experience.

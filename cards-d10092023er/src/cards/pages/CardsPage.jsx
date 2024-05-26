@@ -5,47 +5,51 @@ import useCards from '../hooks/useCards'
 import AddNewCardButton from '../components/AddNewCardButton'
 
 export default function CardsPage() {
-  const{
+  const {
     filterCards,
     isLoading,
     error,
     getCardsData,
     handleDeleteCard,
-    handleCardLike
-  }=useCards()
+    handleCardLike,
+    } = useCards();
 
-  useEffect(()=>{
-    getCardsData()
-  },[getCardsData])
+  useEffect(() => {
+    getCardsData();
+  }, [getCardsData]);
 
   const onDelete = async (id) => {
     await handleDeleteCard(id);
     getCardsData();
-  }; 
+  };
 
-  const onLike = async (id,isLiked) => {
-    await handleCardLike(id,isLiked)
-    
-  }
+  const onLike = async (id, isLiked) => {
+    await handleCardLike(id, isLiked);
+  };
 
   return (
     <div>
       <PageHeader
         title="Business Cards"
-        subtitle ="On this page you can find all business cards from all categories"
-        
+        subtitle="On this page you can find all business cards from all categories"
       />
-        <CardsFeedback  
+     {!isLoading ? (
+     <CardsFeedback
         isLoading={isLoading}
         cards={filterCards}
         error={error}
         handleDelete={onDelete}
-        handleLike={onLike}/>
+        handleLike={onLike}
+        />
+      ) : (
+        <div>Loading...</div>
+      )}
 
-        <AddNewCardButton/>
-   </div>
-);
-};
+      <AddNewCardButton />
+    </div>
+  );
+}
+
 /*
 import React, { useEffect } from "react";
 import PageHeader from "../../components/PageHeader";
@@ -91,6 +95,7 @@ import PageHeader from "../../components/PageHeader";
 import CardsFeedback from "../components/CardsFeedback";
 import useCards from "../hooks/useCards";
 import AddNewCardButton from "../components/AddNewCardButton";
+ 
 
 export default function CardsPage() {
   const {

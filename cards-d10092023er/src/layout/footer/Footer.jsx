@@ -1,3 +1,4 @@
+
 /*import React from "react";
 import { BottomNavigation, BottomNavigationAction, Paper, useTheme } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
@@ -9,7 +10,6 @@ import ROUTES from "../../routes/routesModel";
 export default function Footer() {
   const navigate = useNavigate();
   const theme = useTheme();
-  
 
   return (
     <Paper
@@ -57,16 +57,17 @@ export default function Footer() {
   );
 }
 */
-import React from 'react';
-import { BottomNavigation, BottomNavigationAction, Paper } from '@mui/material';
-import StyleIcon from '@mui/icons-material/Style';
-import InfoIcon from '@mui/icons-material/Info';
-import RecentActorsIcon from '@mui/icons-material/RecentActors';
+
+import React from "react";
+import { BottomNavigation, BottomNavigationAction, Paper, useTheme } from "@mui/material";
+import InfoIcon from "@mui/icons-material/Info";
+import StyleIcon from "@mui/icons-material/Style";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useNavigate } from "react-router-dom";
-import ROUTES from '../../routes/routesModel';
-import { useTheme } from '@mui/material/styles';
+import ROUTES from "../../routes/routesModel";
+import RecentActorsIcon from '@mui/icons-material/RecentActors';
 import { useUser } from '../../users/providers/UserProvider';
+
 
 export default function Footer() {
   const navigate = useNavigate();
@@ -82,6 +83,10 @@ export default function Footer() {
         left: 0,
         right: 0,
         backgroundColor: theme.palette.mode === "dark" ? "#90EE90" : "#FFD900", // Light green in dark mode, pink in light mode
+        boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)", // Add shadow
+        "&:hover": {
+          backgroundColor: theme.palette.mode === "dark" ? "#FF69B4" : "#FFC0CB", // Change background color on hover
+        },
       }}
     >
       <BottomNavigation
@@ -104,26 +109,23 @@ export default function Footer() {
           icon={<InfoIcon />}
           onClick={() => navigate(ROUTES.ABOUT)}
         />
-        <BottomNavigationAction
+         <BottomNavigationAction
           label="Cards"
           icon={<StyleIcon />}
           onClick={() => navigate(ROUTES.CARDS)}
         />
-        {user && user.isBusiness && (
-          <BottomNavigationAction
-            label="My Cards"
-            icon={<RecentActorsIcon />}
-            onClick={() => navigate(ROUTES.MY_CARDS)}
-          />
-        )}
-        {user && user._id && (
-          <BottomNavigationAction
-            label="Favcards"
-            icon={<FavoriteIcon />}
-            onClick={() => navigate(ROUTES.FAV_CARDS)}
-          />
-        )}
+         {user && user.isBusiness && <BottomNavigationAction
+        label="My Cards"
+        icon={<RecentActorsIcon/>}
+        onClick={()=>navigate(ROUTES.MY_CARDS)}
+      />}
+         {user && user._id && <BottomNavigationAction        
+          label="Fav Cards"
+          icon={<FavoriteIcon />}
+          onClick={() => navigate(ROUTES.FAV_CARDS)}
+        />}       
       </BottomNavigation>
     </Paper>
   );
 }
+

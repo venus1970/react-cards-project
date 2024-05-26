@@ -15,6 +15,7 @@ const useUsers = () => {
     const { user, setUser, setToken } = useUser();
     const setSnack = useSnack()
   
+  
     const handleLogin = useCallback(
       async (userLogin) => {
         setIsLoading(true);
@@ -35,7 +36,8 @@ const useUsers = () => {
     const handleLogout = useCallback(() => {
       removeToken();
       setUser(null);
-    }, [setUser]);
+      navigate(ROUTES.ROOT);
+    }, [setUser, navigate]);
   
     const handleSignup = useCallback(
       async (userFromClient) => {

@@ -1,8 +1,8 @@
 import React from "react";
 import { Divider, Typography } from "@mui/material";
 import { useTheme } from "../providers/CustomThemeProvider";
-import "./CustomStyle.css"; // Import custom CSS file
-import "./CustomStyles.css";
+import "./CustomPageHeader.css"; // Import custom CSS file
+import "./CustomPageHeaderDivider.css";
 
 export default function PageHeader({ title, subtitle }) {
   const { isDark } = useTheme();

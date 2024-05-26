@@ -14,7 +14,6 @@ import ChangeSize from "../sandbox/ChangeSize";
 import ShapeTransformer from "../sandbox/ShapeTransformer";
 import LifeCycle from "../sandbox/LifeCycle";
 import Countries from "../sandbox/Countries";
-import Spinner from "../components/Spinner";
 import Error from "../components/Error";
 import Window from "../sandbox/Window";
 import FormExample from "../sandbox/FormExample";
@@ -27,6 +26,7 @@ import AddCardPage from "../cards/pages/AddCardPage";
 import EditCardPage from "../cards/pages/EditCardPage";
 import MapPage from "../sandbox/map/MapPage";
 import EditUserPage from '../users/pages/EditUserPage';
+import AdminCrmPanel from "../sandbox/AdminCrmPanel";
 
 export default function Router() {
   return (
@@ -41,6 +41,7 @@ export default function Router() {
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
        <Route path={ROUTES.USER_PROFILE} element={<UserProfile/>}/>
         <Route path={ROUTES.EDIT_USER} element={<EditUserPage/>}/>
+      <Route path={ROUTES.ADMIN_CRM_PANEL} element={<AdminCrmPanel />} />
   <Route path="map" element={<MapPage />} />
       <Route path={ROUTES.CREATE_CARD} element={<AddCardPage />} />
       <Route path={ROUTES.EDIT_CARD + "/:id"} element={<EditCardPage />} />
@@ -51,13 +52,14 @@ export default function Router() {
         <Route path="changesize" element={<ChangeSize />} />
         <Route path="shapetransformer" element={<ShapeTransformer />} />
         <Route path="lifecycle" element={<LifeCycle />} />
-        <Route path="spinner" element={<Spinner />} />
+       
         <Route path="countries" element={<Countries />} />
         <Route path="error" element={<Error />} />
         <Route path="window" element={<Window />} />
         <Route path="formexample" element={<FormExample />} />
         <Route path="optimization" element={<ParentComponent />} />
         <Route path="context" element={<ParentComponentPage />} />
+        <Route path="admincrppanel" element={<AdminCrmPanel />} />
       
       </Route>
       <Route path="*" element={<ErrorPage />} />

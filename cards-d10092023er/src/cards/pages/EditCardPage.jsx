@@ -1,25 +1,22 @@
-import { Container } from "@mui/material";
+import { Box, Container, Typography, useTheme } from "@mui/material";
 import React, { useEffect } from "react";
 import { Navigate, useParams } from "react-router-dom";
-import useForm from "../../forms/hooks/useForm";
 import ROUTES from "../../routes/routesModel";
-import { useUser } from "../../users/providers/UserProvider";
-import CardForm from "../components/CardForm";
-import initialCardForm from "../helpers/initialForms/initialCardForm";
-import mapCardToModel from "../helpers/normalization/mapCardToModel";
 import useCards from "../hooks/useCards";
+import { useUser } from "../../users/providers/UserProvider";
+import useForm from "../../forms/hooks/useForm";
+import initialCardForm from "../helpers/initialForms/initialCardForm";
 import cardSchema from "../models/cardSchema";
+import CardForm from "../components/CardForm";
+import mapCardToModel from "../helpers/normalization/mapCardToModel";
+import PageHeader from "../../components/PageHeader";
 
 export default function EditCardPage() {
-  //what do we need in this page
-  //id of the card - useParams
   const { id } = useParams();
-  //handleUpdateCard & handleGetCard & card - useCards
-  const { handleUpdateCard, getCardById, card } = useCards();
-
-  //user - useUser (provider)
+  const { handleUpdateCard, getCardByIdEdit, card } = useCards();
   const { user } = useUser();
-  //useForm (initialForm,schema,onSubmit)
+  const theme = useTheme();
+
   const {
     data,
     errors,
@@ -31,36 +28,68 @@ export default function EditCardPage() {
   } = useForm(initialCardForm, cardSchema, (newCard) =>
     handleUpdateCard(card._id, newCard)
   );
-  //useEffect - update the form data to this card data
+
   useEffect(() => {
-    getCardById(id).then((data) => {
+    getCardByIdEdit(id).then((data) => {
       const modelCard = mapCardToModel(data);
       setData(modelCard);
     });
-  }, [getCardById, setData, id]);
+  }, [getCardByIdEdit, setData, id]);
 
   if (!user) return <Navigate replace to={ROUTES.CARDS} />;
 
   return (
-    <Container
-      sx={{
-        paddingTop: 8,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      {data && (
-        <CardForm
-          title="edit card"
-          onSubmit={onSubmit}
-          onReset={handleReset}
-          errors={errors}
-          validateForm={validateForm}
-          onInputChange={handleChange}
-          data={data}
+    <div>
+      <Box>
+        <PageHeader
+          title="Edit Card"
+          subtitle="Here you can edit your card"
         />
-      )}
-    </Container>
+        <Container
+          sx={{
+            paddingTop: 8,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Box
+            sx={{
+              bgcolor:
+                theme.palette.mode === "dark" ? "#000" : "#FFFFE0", // Black background color in dark mode
+              borderRadius: "8px",
+              boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
+              padding: "20px",
+              marginBottom: "40px", // Margin bottom added to form
+              border:
+                theme.palette.mode === "dark" ? "1px solid white" : "none", // White border in dark mode
+            }}
+          >
+            <Typography
+              variant="h5"
+              color={theme.palette.mode === "dark" ? "white" : "initial"} // White color in dark mode
+              sx={{
+                textAlign: "center",
+                marginBottom: 2,
+                marginTop: 2,
+                textTransform: "uppercase",
+              }}
+            >
+              Edit Card
+            </Typography>
+            {data && (
+              <CardForm
+                onSubmit={onSubmit}
+                onReset={handleReset}
+                errors={errors}
+                validateForm={validateForm}
+                onInputChange={handleChange}
+                data={data}
+              />
+            )}
+          </Box>
+        </Container>
+      </Box>
+    </div>
   );
 }
