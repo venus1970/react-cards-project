@@ -46,8 +46,9 @@ export default function FavCards() {
                 subtitle="Manage your favorite cards here"
             />
             <Box sx={{ textAlign: 'center', minHeight: '90vh', m: 1, display: { xs: "none", md: "block" } }}>
-                <Typography variant="body1" gutterBottom>
-                    Welcome to your favorite cards page! <br />
+                <Typography variant="body1" gutterBottom sx={{ color: 'text.primary' }}>
+                    Welcome to your favorite cards page! 
+                    <br />
                     Here, you can view and manage all the cards you've marked as favorites. <br />
                     Feel free to remove cards you no longer want in your favorites list or like cards you enjoy!
                 </Typography>

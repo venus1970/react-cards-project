@@ -42,6 +42,7 @@ import { useUser } from '../../../../users/providers/UserProvider'
 export default function LeftNavBar() {
   const {isDark}=useTheme()
   const {user}= useUser()
+  
   return (
    <Box sx={{display:"flex", alignItems:"center"}}>
      <LogoIcon/>
@@ -52,13 +53,17 @@ export default function LeftNavBar() {
          <NavItem 
            to={ROUTES.ABOUT} 
            label='About' 
-           sx={{color: isDark ? "white" : "black"}}/>
+           sx={{color: isDark ? "white" : "black"}}
+           aria-label="Navigate to About page"
+           />
 
      <Box sx={{display:{xs:"none",sm:"inline-flex"}}}>
      <NavItem 
        to={ROUTES.CARDS} 
        label='Cards'
-       sx={{color: isDark ? "white" : "black"}}/>
+       sx={{color: isDark ? "white" : "black"}}
+       aria-label="Navigate to Cards page"
+       />
 
      
      </Box>
@@ -66,25 +71,33 @@ export default function LeftNavBar() {
        <NavItem 
          to={ROUTES.MY_CARDS} 
          label="My Cards" 
-         sx={{color: isDark ? "white" : "black"}}/>}
+         sx={{color: isDark ? "white" : "black"}}
+         aria-label="Navigate to My Cards page"
+         />}
 
      {user &&  
        <NavItem
          to={ROUTES.FAV_CARDS} 
          label="Fav Cards" 
-         sx={{color: isDark ? "white" : "black"}}/>}
+         sx={{color: isDark ? "white" : "black"}}
+         aria-label="Navigate to Fav Cards page"
+         />}
 
      {user && user.isAdmin && 
        <NavItem
          to={ROUTES.SANDBOX} 
          label="Sandbox" 
-         sx={{color: isDark ? "white" : "black"}}/>}
+         sx={{color: isDark ? "white" : "black"}}
+         aria-label="Navigate to Sandbox page"
+         />}
 
           {user && user.isAdmin && 
        <NavItem
          to={ROUTES.ADMIN_CRM_PANEL} 
          label="AdminCrmPanel" 
-         sx={{color: isDark ? "white" : "black"}}/>}
+         sx={{color: isDark ? "white" : "black"}}
+         aria-label="Navigate to AdminCrmPanel page"
+         />}
      </Box>
     </Box>
   )

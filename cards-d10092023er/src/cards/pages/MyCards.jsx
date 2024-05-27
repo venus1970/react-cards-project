@@ -62,7 +62,7 @@ export default function MyCards() {
       </div>
   )
 }*/
-import { Container } from '@mui/material'
+import { Box } from '@mui/material'
 import React, { useEffect } from 'react'
 import PageHeader from '../../components/PageHeader'
 import AddNewCardButton from '../components/AddNewCardButton'
@@ -99,7 +99,8 @@ export default function MyCards() {
   }
 
   return (
-      <Container>
+    <div>
+      <Box>
         <PageHeader
           title="My Cards"
           subtitle="On this page you can find all My created Cards"
@@ -112,6 +113,7 @@ export default function MyCards() {
           handleLike={handleCardLike}
         />
         <AddNewCardButton/>
-      </Container>
+      </Box>
+      </div>
   )
 }

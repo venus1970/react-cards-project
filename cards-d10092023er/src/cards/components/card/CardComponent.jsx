@@ -25,8 +25,8 @@ export default function CardComponent({
       "&:hover": { // Custom hover effect
         transform: "scale(1.05)",
         boxShadow: theme.palette.mode === "dark" 
-          ? "0 16px 16px rgba(173, 216, 230, 0.8)" // Light blue ionize CSS style of shadow in dark mode
-          : "0 16px 16px rgba(173, 216, 230, 0.5)", // Light blue ionize CSS style of shadow in light mode
+          ? "0 16px 25px rgba(173, 216, 230, 0.8)" // Light blue ionize CSS style of shadow in dark mode
+          : "0 20px 20px rgba(0, 0, 0.5, 0.5)" // Light blue ionize CSS style of shadow in light mode
       }
     }}>
       <CardActionArea
@@ -46,8 +46,7 @@ export default function CardComponent({
         handleCardDelete={handleCardDelete}
         cardId={card._id}
         userId={card.user_id}
-        likes={card.likes}
-       
+        likes={card.likes}       
         phone={card.phone}        
       />
     </Card>

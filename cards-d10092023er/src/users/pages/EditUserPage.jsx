@@ -1,19 +1,22 @@
-/*import React, { useEffect } from 'react'
-import useForm from '../../forms/hooks/useForm'
-import { Navigate} from 'react-router-dom'
-import { useUser } from '../providers/UserProvider'
-import mapToModelUser from '../helpers/normalization/mapToModelUser'
-import ROUTES from '../../routes/routesModel'
-import { Container, Box, Typography } from '@mui/material'
-import useUsers from '../hooks/useUsers'
-import initialEditForm from '../helpers/initialForms/initialEditForm'
-import EditUserForm from '../components/EditUserForm'
-import editUserSchema from '../models/editUserSchema'
-import PageHeader from '../../components/PageHeader'
+/*import React, { useEffect } from 'react';
+import useForm from '../../forms/hooks/useForm';
+import { Navigate } from 'react-router-dom';
+import { useUser } from '../providers/UserProvider';
+import mapToModelUser from '../helpers/normalization/mapToModelUser';
+import ROUTES from '../../routes/routesModel';
+import { Container, Box, Typography } from '@mui/material';
+import useUsers from '../hooks/useUsers';
+import initialEditForm from '../helpers/initialForms/initialEditForm';
+import EditUserForm from '../components/EditUserForm';
+import editUserSchema from '../models/editUserSchema';
+import PageHeader from '../../components/PageHeader';
+import { useTheme } from '../../providers/CustomThemeProvider';
 
 export default function EditUserPage() {
-    const { handleGetUser, handleUpdateUser } = useUsers()
-    const { user } = useUser()
+    const { handleGetUser, handleUpdateUser } = useUsers();
+    const { user } = useUser();
+    const theme = useTheme();
+    const isDarkMode = theme.isDarkMode;
 
     const {
         data,
@@ -25,74 +28,72 @@ export default function EditUserPage() {
         onSubmit,
     } = useForm(initialEditForm, editUserSchema, (newUser) =>
         handleUpdateUser(user._id, newUser)
-    )
+    );
 
     useEffect(() => {
         if (user) {
             handleGetUser(user._id).then((userData) => {
-                const modelUser = mapToModelUser(userData)
-                setData(modelUser)
-            })
+                const modelUser = mapToModelUser(userData);
+                setData(modelUser);
+            });
         }
-    }, [handleGetUser, setData, user])
+    }, [handleGetUser, setData, user]);
 
     if (!user) return <Navigate replace to={ROUTES.LOGIN} />; // Redirect to login if user is not logged in
   
     return (
         <div>
-    <Box
-    sx={{
-        paddingTop: 4
-    }}
-    >
-     <PageHeader
-        title="Welcome to Edit Account Page"
-        subtitle="Here you can edit your account"
-      />
-        <Container
-            sx={{
-                paddingTop: 8,
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-            }}
-        >
             <Box
                 sx={{
-                    backgroundColor: '#FFFFE0', // yellow background
-                    padding: '20px',
-                    borderRadius: '10px',
-                    boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)',
-                    border: '1px solid #000000', // black border
-                    marginBottom: "30px",
-                    
+                    paddingTop: 4,
                 }}
             >
-            <Typography variant="h4" gutterBottom sx={{ textAlign: "center", 
-                    backgroundColor: '#FFFFE0', padding: '10px', borderRadius: '5px' }}>
-                    Edit Account
-                </Typography>
-                {data && (
-                    <EditUserForm
-                        onSubmit={onSubmit}
-                        onReset={handleReset}
-                        errors={errors}
-                        validateForm={validateForm}
-                        onInputChange={handleChange}
-                        data={data}
-                    />
-                )}
+                <PageHeader
+                    title="Welcome to Edit Account Page"
+                    subtitle="Here you can edit your account"
+                />
+                <Container
+                    sx={{
+                        paddingTop: 8,
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                    }}
+                >
+                    <Box
+                        sx={{
+                            backgroundColor: isDarkMode ? '#333333' : '#FFFFE0', // Dark mode background color: dark gray, Light mode background color: yellow
+                            padding: '20px',
+                            borderRadius: '10px',
+                            boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)',
+                            border: '1px solid #000000', // black border
+                            marginBottom: "30px",
+                        }}
+                    >
+                        <Typography variant="h4" gutterBottom sx={{ textAlign: "center", backgroundColor: isDarkMode ? '#333333' : '#FFFFE0', padding: '10px', borderRadius: '5px' }}>
+                            Edit Account
+                        </Typography>
+                        {data && (
+                            <EditUserForm
+                                onSubmit={onSubmit}
+                                onReset={handleReset}
+                                errors={errors}
+                                validateForm={validateForm}
+                                onInputChange={handleChange}
+                                data={data}
+                            />
+                        )}
+                    </Box>
+                </Container>
             </Box>
-        </Container>
-        </Box>
-    </div>  
+        </div>
     );
 }
 
-
-
-
 */
+
+
+
 
 import React, { useEffect } from 'react'
 import useForm from '../../forms/hooks/useForm'

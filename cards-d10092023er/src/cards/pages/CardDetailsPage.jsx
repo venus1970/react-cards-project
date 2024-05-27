@@ -23,7 +23,7 @@ export default function CardDetailsPage() {
   return (
     <Container>
         <PageHeader
-        title='Card Details'
+        title='Card Details Page'
         subtitle='Here you can find all the details about specific card '
         />
         <Box 

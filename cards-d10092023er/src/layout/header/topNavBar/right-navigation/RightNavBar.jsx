@@ -22,7 +22,14 @@ export default function RightNavBar() {
           alignItems: "center",
         }}
       >
-        <IconButton sx={{ ml: 1 }} onClick={toggleDarkMode}>
+        <IconButton sx={{ ml: 1,
+     borderRadius: "10%",
+     backgroundColor: isDark? "#111" : "#fff",
+     border: "1px solid blue",
+     width: "30px",
+     height: "30px",
+     display: "flex",    
+       }} onClick={toggleDarkMode}>
           {isDark ? <LightModeIcon /> : <DarkModeIcon />}
         </IconButton>
 

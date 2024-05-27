@@ -51,9 +51,22 @@ export default function UserProfile() {
           <Avatar
             alt={userFullData.image?.alt || ''}
             src={userFullData.image?.url || ''}
-            sx={{ width: 230, height: 230, border: 1 }}
+            sx={{
+              width: 230,
+              height: 230,
+              border: 1,
+              borderColor: "white",
+              borderRadius: "50%",
+            }}
           />
-          <Paper elevation={3} sx={{ mt: 2, p: 2 }}>
+          <Paper
+            elevation={3}
+            sx={{
+              mt: 2,
+              p: 2,
+              borderColor: "white",
+              }}
+          >
             <Typography variant="h5" component="h2" fontWeight={600} gutterBottom>
               {`${userFullData.name.first} ${userFullData.name.middle || ''} ${userFullData.name.last}`}
             </Typography>

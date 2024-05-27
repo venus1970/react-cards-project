@@ -12,7 +12,7 @@ import Counter from "../sandbox/Counter";
 import Counter1 from "../sandbox/Counter1";
 import ChangeSize from "../sandbox/ChangeSize";
 import ShapeTransformer from "../sandbox/ShapeTransformer";
-import LifeCycle from "../sandbox/LifeCycle";
+
 import Countries from "../sandbox/Countries";
 import Error from "../components/Error";
 import Window from "../sandbox/Window";
@@ -20,8 +20,8 @@ import FormExample from "../sandbox/FormExample";
 import SignupPage from "../users/pages/SignupPage";
 import LoginPage from "../users/pages/LoginPage";
 import UserProfile from '../users/pages/UserProfile';
-import ParentComponent from "../sandbox/optimization/ParentComponent";
-import ParentComponentPage from "../sandbox/context/ParentComponentPage";
+
+
 import AddCardPage from "../cards/pages/AddCardPage";
 import EditCardPage from "../cards/pages/EditCardPage";
 import MapPage from "../sandbox/map/MapPage";
@@ -41,7 +41,7 @@ export default function Router() {
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
        <Route path={ROUTES.USER_PROFILE} element={<UserProfile/>}/>
         <Route path={ROUTES.EDIT_USER} element={<EditUserPage/>}/>
-      <Route path={ROUTES.ADMIN_CRM_PANEL} element={<AdminCrmPanel />} />
+     
   <Route path="map" element={<MapPage />} />
       <Route path={ROUTES.CREATE_CARD} element={<AddCardPage />} />
       <Route path={ROUTES.EDIT_CARD + "/:id"} element={<EditCardPage />} />
@@ -51,15 +51,14 @@ export default function Router() {
         <Route path="counter1" element={<Counter1 />} />
         <Route path="changesize" element={<ChangeSize />} />
         <Route path="shapetransformer" element={<ShapeTransformer />} />
-        <Route path="lifecycle" element={<LifeCycle />} />
+        
        
         <Route path="countries" element={<Countries />} />
         <Route path="error" element={<Error />} />
         <Route path="window" element={<Window />} />
         <Route path="formexample" element={<FormExample />} />
-        <Route path="optimization" element={<ParentComponent />} />
-        <Route path="context" element={<ParentComponentPage />} />
-        <Route path="admincrppanel" element={<AdminCrmPanel />} />
+        
+        <Route path="admincrmpanel" element={<AdminCrmPanel />} />
       
       </Route>
       <Route path="*" element={<ErrorPage />} />

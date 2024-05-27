@@ -110,8 +110,7 @@ import { Box, Button, Grid, useTheme, Snackbar, Typography } from "@mui/material
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import useUsers from "../hooks/useUsers";
 import MuiAlert from '@mui/material/Alert';
-
-
+import { useSnack } from "../../providers/SnackbarProvider";
 
 export default function LoginPage() {
   const { handleLogin } = useUsers();
@@ -122,6 +121,7 @@ export default function LoginPage() {
   const { data, errors, handleChange, handleReset, validateForm, onSubmit } =
     useForm(initialLoginForm, loginSchema, handleLogin);
   const { user } = useUser();
+  const setSnack = useSnack();
 
   const handleAlertClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -133,14 +133,17 @@ export default function LoginPage() {
   useEffect(() => {
     if (failedAttempts >= 3) {
       setBlocked(true);
-      setAlertOpen(true);
+      setSnack(
+        "error",
+        "You have exceeded the maximum number of login attempts. Please try again later: after 5 minutes you will be able to log in again!"
+      );
       const blockTimer = setTimeout(() => {
         setFailedAttempts(0);
         setBlocked(false);
       }, 5 * 60 * 1000); // 5 minutes
       return () => clearTimeout(blockTimer);
     }
-  }, [failedAttempts]);
+  }, [failedAttempts, setSnack]);
 
   if (user) return <Navigate to={ROUTES.ROOT} />;
 
@@ -164,8 +167,8 @@ export default function LoginPage() {
           alignItems: "center",
         }}
       >
-    *For security reasons, you have 3 consecutive failed login attempts. If your account will be temporarily blocking, please wait for the 5 minutes before attempting to log in again.
-  </Typography>
+        *For security reasons, you have 3 consecutive failed login attempts. If your account will be temporarily blocking, please wait for the 5 minutes before attempting to log in again.
+      </Typography>
       <Container
         sx={{
           paddingTop: 8,
@@ -173,22 +176,7 @@ export default function LoginPage() {
           justifyContent: "center",
           alignItems: "center",
         }}
-
-
-
       >
-        <Box
-  sx={{
-    backgroundColor: theme.palette.mode === 'dark' ? '#333' : '#f0f0f0',
-    borderRadius: '8px',
-    boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)',
-    padding: '16px',
-    marginTop: '16px',
-  }}
->
-
-</Box>
-
         <Box
           sx={{
             backgroundColor: theme.palette.mode === "dark" ? "#000000" : "#FFFFE0",
@@ -196,13 +184,15 @@ export default function LoginPage() {
             borderRadius: "10px",
             boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
             border: theme.palette.mode === "dark" ? "1px solid #ffffff" : "1px solid #000000",
+            marginBottom: "30px",
+            width: "100%",
+            maxWidth: "450px",
+            opacity: blocked ? 0.5 : 1, // Reduce opacity if blocked
+            pointerEvents: blocked ? "none" : "auto", // Disable pointer events if blocked
           }}
         >
-          
           <Form
             title="login form"
-            styles={{ maxWidth: "450px" }}
-            to={ROUTES.ROOT}
             onSubmit={(e) => {
               if (!blocked) {
                 setFailedAttempts(failedAttempts + 1);
@@ -241,19 +231,7 @@ export default function LoginPage() {
             </Grid>
           </Form>
         </Box>
-        <Box
-  sx={{
-    backgroundColor: theme.palette.mode === 'dark' ? '#333' : '#f0f0f0',
-    borderRadius: '8px',
-    boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)',
-    padding: '16px',
-    marginTop: '16px',
-  }}
->
-</Box>
-
       </Container>
-      
       <Snackbar open={alertOpen} autoHideDuration={6000} onClose={handleAlertClose}>
         <MuiAlert onClose={handleAlertClose} severity="error" sx={{ width: "100%" }}>
           You have been blocked due to too many failed login attempts. Please try again later.
@@ -262,4 +240,3 @@ export default function LoginPage() {
     </Box>
   );
 }
-

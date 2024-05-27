@@ -16,13 +16,12 @@ export default function SandBox() {
           <NavItem to="counter1" label={<span style={{ color: 'yellow', fontWeight: '600' }}>Counter1</span>} />
           <NavItem to="changesize" label={<span style={{ color: 'blue', fontWeight: '600' }}>Change size</span>} />
           <NavItem to="shapetransformer" label={<span style={{ color: 'lightgreen', fontWeight: '600' }}>Shape transformer</span>} />
-          <NavItem to="lifecycle" label={<span style={{ color: 'violet', fontWeight: '600' }}>Life Cycle</span>} />
+         
           <NavItem to="countries" label={<span style={{ color: 'orange', fontWeight: '600' }}>Countries list</span>} />
           <NavItem to="error" label={<span style={{ color: 'brown', fontWeight: '600' }}>Error</span>} />
           <NavItem to="window" label={<span style={{ color: 'blue', fontWeight: '600' }}>Window</span>} />
           <NavItem to="formexample" label={<span style={{ color: 'violet', fontWeight: '600' }}>FormExample</span>} />
-          <NavItem to="optimization" label={<span style={{ color: 'red', fontWeight: '600' }}>Optimization</span>} />
-          <NavItem to="context" label={<span style={{ color: 'black', fontWeight: '600' }}>Context</span>} />
+          
           <NavItem to="admincrmpanel" label={<span style={{ color: 'black', fontWeight: '600' }}>AdminCrmPanel</span>} />
           
         </Toolbar>
