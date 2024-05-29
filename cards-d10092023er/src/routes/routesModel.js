@@ -12,6 +12,13 @@ const ROUTES = {
   USER_PROFILE: "/user-info",
   EDIT_USER: "/edit-user",
   SANDBOX: "/sandbox",
+  MAP: "/map",
+  CONTACT_US: "/contact-us",
+  ERROR: "/error",
+  COUNTER: "/counter",
+  CRM: "/crm",
+
+
 };
 
 export default ROUTES;

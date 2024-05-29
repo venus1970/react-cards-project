@@ -82,6 +82,12 @@ export default function LeftNavBar() {
          sx={{color: isDark ? "white" : "black"}}
          aria-label="Navigate to Fav Cards page"
          />}
+          <NavItem
+         to={ROUTES.CONTACT_US} 
+         label="Contact Us" 
+         sx={{color: isDark ? "white" : "black"}}
+         aria-label="Navigate to Contact Us page"
+         />
 
      {user && user.isAdmin && 
        <NavItem
@@ -93,11 +99,12 @@ export default function LeftNavBar() {
 
           {user && user.isAdmin && 
        <NavItem
-         to={ROUTES.ADMIN_CRM_PANEL} 
-         label="AdminCrmPanel" 
+         to={ROUTES.CRM} 
+         label="Crm" 
          sx={{color: isDark ? "white" : "black"}}
          aria-label="Navigate to AdminCrmPanel page"
          />}
+        
      </Box>
     </Box>
   )

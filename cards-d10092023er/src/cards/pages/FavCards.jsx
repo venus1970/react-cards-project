@@ -7,6 +7,7 @@ import ROUTES from '../../routes/routesModel';
 import PageHeader from '../../components/PageHeader';
 import CardsFeedback from '../components/CardsFeedback';
 import AddNewCardButton from '../components/AddNewCardButton';
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 export default function FavCards() {
     const {
@@ -45,15 +46,55 @@ export default function FavCards() {
                 title="Favorite Cards"
                 subtitle="Manage your favorite cards here"
             />
-            <Box sx={{ textAlign: 'center', minHeight: '90vh', m: 1, display: { xs: "none", md: "block" } }}>
-                <Typography variant="body1" gutterBottom sx={{ color: 'text.primary' }}>
-                    Welcome to your favorite cards page! 
-                    <br />
-                    Here, you can view and manage all the cards you've marked as favorites. <br />
-                    Feel free to remove cards you no longer want in your favorites list or like cards you enjoy!
-                </Typography>
-                 <Divider sx={{  color: 'blue' ,my: 2 }} />
-                <CardsFeedback
+            <Box
+  sx={{
+    backgroundColor: '#C9F8F3', 
+          borderRadius: "10px",
+          boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.25)",
+          border: "1px solid rgba(14, 122, 112, 0.2)",
+    padding: '20px',
+    width: '70%', // Adjusted width
+    margin: 'auto',
+    marginBottom: 0,
+    marginTop: "20px",
+  }}
+>
+  <Typography variant="body1" gutterBottom sx={{ color: 'text.primary' }}>
+    Welcome to your favorite cards page! 
+    <br />
+    Here, you can view and manage all the cards you've marked as favorites. <br />
+    Feel free to remove cards you no longer want in your favorites list (by
+    clicking on the red favorite icon) or like cards you enjoy!<br/>
+    The Favorite Cards Page is your personalized collection of preferred contacts. This page serves as a dedicated space where you can manage and interact with the business cards you've marked as favorites. Whether you've identified key prospects, important clients, or valuable networking connections, this feature-rich page offers convenient tools to streamline your workflow and enhance your productivity.
+    <br/>
+
+Key Features:
+
+Centralized Favorites: Access all your favorite business cards in one centralized location. No more searching through lengthy lists or cluttered databases – simply navigate to your favorites page for quick and easy reference.
+
+Effortless Management: Manage your favorite cards effortlessly with intuitive controls for deletion and liking. Remove cards you no longer need or interact with cards you appreciate by liking them to show your interest and appreciation.
+
+Streamlined Interaction: Interact seamlessly with your favorite contacts directly from the page. Whether you need to reach out for networking opportunities, follow up on leads, or maintain existing relationships, this page provides the tools you need to stay connected.
+
+Personalized Experience: Customize your favorite cards page to suit your preferences and priorities. Organize cards based on relevance, importance, or any other criteria that align with your professional goals and objectives.
+
+Enhanced Productivity: Maximize your productivity by leveraging the efficiency and convenience offered by the favorite cards page. Spend less time searching for contacts and more time engaging with them effectively to achieve your business objectives.
+  </Typography>
+</Box>
+         <Divider
+          sx={{
+            margin: "20px auto",
+            width: "50px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {[...Array(3)].map((_, index) => (
+            <FavoriteIcon key={index} color="error" fontSize="large" />
+          ))}
+        </Divider>
+              <CardsFeedback
                     isLoading={isLoading}
                     error={error}
                     cards={filterCards}
@@ -61,7 +102,7 @@ export default function FavCards() {
                     handleLike={handleLike}
                 />
                 <AddNewCardButton />
-            </Box>
+           
         </div>
     );
 }

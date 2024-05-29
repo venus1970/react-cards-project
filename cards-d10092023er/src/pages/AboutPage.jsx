@@ -10,6 +10,7 @@ import {
 import PageHeader from "../components/PageHeader";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Map from "../cards/pages/Map";
+import AccessibleIcon from "@mui/icons-material/Accessible";
 
 const AboutPage = () => {
   const theme = useTheme();
@@ -19,16 +20,21 @@ const AboutPage = () => {
     setShowFullContent(!showFullContent);
   };
 
- return (
+  return (
     <div
-    style={{ color: theme.palette.mode === "dark" ? "#ffffff" : "#000000", padding: "20px", margin: "auto", width: { xs: "90%", md: "70%" }, border: 5, borderColor: "white", textAlign: "center", // Added to center
-    
- }}
-    
+      style={{
+        color: theme.palette.mode === "dark" ? "#ffffff" : "#000000",
+        padding: "20px",
+        margin: "auto",
+        width: { xs: "90%", md: "70%" },
+        border: 5,
+        borderColor: "white",
+        textAlign: "center", // Added to center
+      }}
     >
       <PageHeader
         title="About Page"
-        subtitle="On this page you can find explanations about using the application"
+        subtitle="On this page you can find information and explanation about using the application"
       />
 
       <Box
@@ -38,13 +44,13 @@ const AboutPage = () => {
           padding: "20px",
           margin: "20px auto",
           width: { xs: "90%", md: "70%" },
-          border: 5,
-          borderColor: "white",
+          borderRadius: "10px",
+          boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.25)",
+          border: "1px solid rgba(14, 122, 112, 0.2)",
           textAlign: "center", // Added to center align content
           marginTop: "30px",
           marginBottom: "0px",
         }}
-      
       >
         <Avatar
           src="/assets/images/fav3.png"
@@ -58,6 +64,19 @@ const AboutPage = () => {
             border: `5px solid ${theme.palette.primary.main}`,
           }}
         />
+        <Divider
+          sx={{
+            margin: "20px auto",
+            width: "50px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {[...Array(3)].map((_, index) => (
+            <FavoriteIcon key={index} color="error" fontSize="large" />
+          ))}
+        </Divider>
         <Typography variant="body1">
           <strong>React Business Card Project: Explained Introduction, Key Functionality, and Conclusion</strong>
           <br />
@@ -97,8 +116,14 @@ const AboutPage = () => {
                   </ul>
                 </li>
               )}
+                      
+                            
+              <AccessibleIcon              
+                fontSize="large"                    
+                color="primary"
+                />
             </ol>
-            <br />
+            
             {showFullContent && (
               <>
                 <strong>Conclusion</strong>
@@ -138,48 +163,44 @@ const AboutPage = () => {
         </Divider>
 
 
-         <Typography variant="body1" align="left">
-          <strong>Card example: card like this, you can see on cards page</strong>        
+        <Typography variant="body1" align="left">
+          <strong>Card example: card like this, you can see on cards page</strong>
           <br />
         </Typography>
-         <Box
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          margin: "20px auto",
-          width: { xs: "90%", md: "50%" },
-          height: "500px",
-          border: 5,
-          borderColor: "white",
-          mt: 2,
-          mb: 2,
-        }}
-      >
-        <Avatar
-              src="/assets/images/cardexample.png"
-          alt="card"
-          sx={{ width: "45%", height: "100%", borderRadius: 1 }}
-        />
-        <Map center={[51.505, -0.09]} zoom={14} address={"Haifa, Kiriyat yam"} />
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            margin: "20px auto",
+            width: { xs: "90%", md: "50%" },
+            height: "500px",
+            border: 5,
+            borderColor: "white",
+            mt: 2,
+            mb: 2,
+          }}
+        >
+          <Avatar
+            src="/assets/images/cardexample.png"
+            alt="card"
+            sx={{ width: "45%", height: "100%", borderRadius: 1 }}
+          />
+          <Map center={[51.505, -0.09]} zoom={14} address={"Tel aviv,Hashalom 10"} />
 
-        
-      </Box>
-     
-          <Typography variant="body1" align="left">
-            <strong>Card Functionality:</strong>
-            <br />
-           
-    <strong>Click on the Card:</strong> All users can click on the card to
-         
-          view more information about a user and card details include map location and contact. 
-             
-            
-                
-            
-              </Typography>
 
-               <Divider
+        </Box>
+
+        <Typography variant="body1" align="left">
+          <strong>Card Functionality:</strong>
+          <br />
+
+          <strong>Click on the Card:</strong> All users can click on the card to
+
+          view more information about a user and card details include map location and contact.
+        </Typography>
+
+        <Divider
           sx={{
             margin: "20px auto",
             width: "50px",
@@ -196,9 +217,9 @@ const AboutPage = () => {
           <strong>Dark and light mode:</strong>
           <br />
           <strong>switch to dark or light mode:</strong> The users have the option to choose between dark and light mode.
-     </Typography>
-          <Avatar
-              src="/assets/images/dark_light.png"
+        </Typography>
+        <Avatar
+          src="/assets/images/dark_light.png"
           alt="card"
           sx={{
             width: "200px",
@@ -206,11 +227,11 @@ const AboutPage = () => {
             marginBottom: "20px",
             margin: "auto", // Centering the avatar
             display: "block", // Ensuring avatar is centered
-             border: `5px solid ${theme.palette.primary.main}`,
+            border: `5px solid ${theme.palette.primary.main}`,
           }}
         />
-    
-     </Box>
+
+      </Box>
     </div>
   );
 };

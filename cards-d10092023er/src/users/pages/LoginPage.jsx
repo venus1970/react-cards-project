@@ -95,6 +95,7 @@ export default function LoginPage() {
     </Box>
   );
 }*/
+
 import React, { useState, useEffect } from "react";
 import useForm from "../../forms/hooks/useForm";
 import initialLoginForm from "../helpers/initialForms/initialLoginForm";
@@ -148,6 +149,7 @@ export default function LoginPage() {
   if (user) return <Navigate to={ROUTES.ROOT} />;
 
   return (
+    
     <Box
       sx={{
         minHeight: "90vh",
@@ -157,18 +159,6 @@ export default function LoginPage() {
       }}
     >
       <PageHeader title="Welcome to Login page" subtitle="Here you can login" />
-      <Typography
-        variant="body1"
-        sx={{
-          color: "blue",
-          padding: "20px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        *For security reasons, you have 3 consecutive failed login attempts. If your account will be temporarily blocking, please wait for the 5 minutes before attempting to log in again.
-      </Typography>
       <Container
         sx={{
           paddingTop: 8,
@@ -191,6 +181,18 @@ export default function LoginPage() {
             pointerEvents: blocked ? "none" : "auto", // Disable pointer events if blocked
           }}
         >
+          <Typography
+            variant="body1"
+            sx={{
+              color: "blue",
+              padding: "5px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            *For security reasons, you have 3 consecutive failed login attempts. If your account will be temporarily blocking, please wait for the 24 hours before attempting to log in again.
+          </Typography>
           <Form
             title="login form"
             onSubmit={(e) => {
@@ -234,7 +236,8 @@ export default function LoginPage() {
       </Container>
       <Snackbar open={alertOpen} autoHideDuration={6000} onClose={handleAlertClose}>
         <MuiAlert onClose={handleAlertClose} severity="error" sx={{ width: "100%" }}>
-          You have been blocked due to too many failed login attempts. Please try again later.
+          You have been blocked due 3 failed login attempts. Please try again
+          after 24 hours!
         </MuiAlert>
       </Snackbar>
     </Box>

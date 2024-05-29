@@ -30,7 +30,7 @@ const MapPage = () => {
         <Map
           center={[51.505, -0.09]}
           zoom={13}
-          address={"Tel Aviv Hashalom 2"}
+          address={"Haifa Dgania avenue 9"} 
         />
       </div>
     </div>

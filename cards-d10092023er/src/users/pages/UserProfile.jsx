@@ -54,7 +54,7 @@ export default function UserProfile() {
             sx={{
               width: 230,
               height: 230,
-              border: 1,
+              border: 10,
               borderColor: "white",
               borderRadius: "50%",
             }}
@@ -65,6 +65,7 @@ export default function UserProfile() {
               mt: 2,
               p: 2,
               borderColor: "white",
+              shadow: 10,
               }}
           >
             <Typography variant="h5" component="h2" fontWeight={600} gutterBottom>
@@ -87,7 +88,15 @@ export default function UserProfile() {
             </IconButton>
           </Paper>
         </Box>
-        <Box sx={{ m: 2, width: { xs: '90%', md: '40%' }, height: { xs: '350px', md: '450px' } }}>
+        <Box
+          sx={{
+            m: 2,
+            width: { xs: "90%", md: "40%" },
+            height: { xs: "350px", md: "450px" },
+            border: 10,
+            borderColor: "white",
+          }}
+        >
           <Map
             center={[51.505, -0.09]}
             zoom={13}

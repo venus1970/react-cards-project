@@ -62,7 +62,7 @@ export default function MyCards() {
       </div>
   )
 }*/
-import { Box } from '@mui/material'
+import { Box, Divider, Typography } from '@mui/material'
 import React, { useEffect } from 'react'
 import PageHeader from '../../components/PageHeader'
 import AddNewCardButton from '../components/AddNewCardButton'
@@ -71,6 +71,7 @@ import { useUser } from '../../users/providers/UserProvider'
 import { useNavigate } from 'react-router-dom'
 import ROUTES from '../../routes/routesModel'
 import CardsFeedback from '../components/CardsFeedback'
+import FavoriteIcon from "@mui/icons-material/Favorite"
 
 export default function MyCards() {
   const {
@@ -100,11 +101,65 @@ export default function MyCards() {
 
   return (
     <div>
-      <Box>
+      
         <PageHeader
           title="My Cards"
-          subtitle="On this page you can find all My created Cards"
+        subtitle="On this page you can find all the cards you've created."
         />
+      <Box
+  sx={{
+    backgroundColor: '#C9F8F3', 
+          borderRadius: "10px",
+          boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.25)",
+          border: "1px solid rgba(14, 122, 112, 0.2)",
+    padding: '20px',
+    width: '70%', // Adjusted width
+    margin: 'auto',
+    marginBottom: 0,
+    marginTop: "20px",
+  }}
+>
+  <Typography variant="body1" gutterBottom sx={{ color: 'text.primary' }}>
+      Welcome to your personal cards page! <br />
+                    Here, you can view and manage all the cards you've created. <br />
+                    Feel free to edit, delete cards you no longer need or like cards you enjoy!
+                  <br/>
+          The "My Cards Page" is your personal hub for managing all your
+          business cards efficiently. Whether you're a seasoned professional or
+          just starting out, this page offers a streamlined approach to
+          organizing and accessing your vital contact information.
+          <br />
+
+Key Features:
+
+Card Management: Seamlessly create, edit, and delete your business cards to keep your contact database up-to-date.
+
+Customization: Tailor your cards with personalized details such as company information, contact details, and profile pictures.
+
+Favorite Cards: Mark specific cards as favorites for quick access and prioritization.
+
+Dynamic Navigation: Navigate effortlessly through your card collection with an intuitive and user-friendly interface.
+
+Accessibility: Our platform prioritizes accessibility, ensuring that all users, regardless of ability, can utilize and benefit from its features.
+  </Typography>
+</Box>
+
+
+                  <Divider
+          sx={{
+            margin: "20px auto",
+            width: "50px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {[...Array(3)].map((_, index) => (
+            <FavoriteIcon key={index} color="error" fontSize="large" />
+          ))}
+        </Divider>
+        
+
         <CardsFeedback
           isLoading={isLoading}
           error={error}
@@ -113,7 +168,7 @@ export default function MyCards() {
           handleLike={handleCardLike}
         />
         <AddNewCardButton/>
-      </Box>
+     
       </div>
   )
 }

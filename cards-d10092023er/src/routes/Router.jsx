@@ -12,7 +12,6 @@ import Counter from "../sandbox/Counter";
 import Counter1 from "../sandbox/Counter1";
 import ChangeSize from "../sandbox/ChangeSize";
 import ShapeTransformer from "../sandbox/ShapeTransformer";
-
 import Countries from "../sandbox/Countries";
 import Error from "../components/Error";
 import Window from "../sandbox/Window";
@@ -20,13 +19,13 @@ import FormExample from "../sandbox/FormExample";
 import SignupPage from "../users/pages/SignupPage";
 import LoginPage from "../users/pages/LoginPage";
 import UserProfile from '../users/pages/UserProfile';
-
-
 import AddCardPage from "../cards/pages/AddCardPage";
 import EditCardPage from "../cards/pages/EditCardPage";
 import MapPage from "../sandbox/map/MapPage";
 import EditUserPage from '../users/pages/EditUserPage';
-import AdminCrmPanel from "../sandbox/AdminCrmPanel";
+import Crm from "../cards/pages/Crm";
+
+import ContactUs from "../pages/ContactUs";
 
 export default function Router() {
   return (
@@ -39,18 +38,19 @@ export default function Router() {
       <Route path={ROUTES.CARD_INFO + "/:id"} element={<CardDetailsPage />} />
       <Route path={ROUTES.SIGNUP} element={<SignupPage />} />
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
-       <Route path={ROUTES.USER_PROFILE} element={<UserProfile/>}/>
-        <Route path={ROUTES.EDIT_USER} element={<EditUserPage/>}/>
-     
-  <Route path="map" element={<MapPage />} />
+      <Route path={ROUTES.USER_PROFILE} element={<UserProfile/>}/>
+      <Route path={ROUTES.EDIT_USER} element={<EditUserPage/>}/>
+      <Route path={ROUTES.CONTACT_US} element={<ContactUs />} />     
+      <Route path={ROUTES.MAP} element={<MapPage />} />
       <Route path={ROUTES.CREATE_CARD} element={<AddCardPage />} />
+      <Route path={ROUTES.CRM} element={<Crm />} />
       <Route path={ROUTES.EDIT_CARD + "/:id"} element={<EditCardPage />} />
-
       <Route path={ROUTES.SANDBOX} element={<SandBox />}>
         <Route path="counter" element={<Counter />} />
         <Route path="counter1" element={<Counter1 />} />
         <Route path="changesize" element={<ChangeSize />} />
         <Route path="shapetransformer" element={<ShapeTransformer />} />
+        <Route path="crm" element={<Crm />} />
         
        
         <Route path="countries" element={<Countries />} />
@@ -58,7 +58,8 @@ export default function Router() {
         <Route path="window" element={<Window />} />
         <Route path="formexample" element={<FormExample />} />
         
-        <Route path="admincrmpanel" element={<AdminCrmPanel />} />
+      
+        <Route path="contactus" element={<ContactUs />} />
       
       </Route>
       <Route path="*" element={<ErrorPage />} />

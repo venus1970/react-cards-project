@@ -95,22 +95,23 @@ export default function EditUserPage() {
 
 
 
-import React, { useEffect } from 'react'
-import useForm from '../../forms/hooks/useForm'
-import { Navigate } from 'react-router-dom'
-import { useUser } from '../providers/UserProvider'
-import mapToModelUser from '../helpers/normalization/mapToModelUser'
-import ROUTES from '../../routes/routesModel'
-import { Box, Container } from '@mui/material'
-import useUsers from '../hooks/useUsers'
-import initialEditForm from '../helpers/initialForms/initialEditForm'
-import EditUserForm from '../components/EditUserForm'
-import editUserSchema from '../models/editUserSchema'
-import PageHeader from '../../components/PageHeader'
+import React, { useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
+import { useUser } from '../providers/UserProvider';
+import mapToModelUser from '../helpers/normalization/mapToModelUser';
+import ROUTES from '../../routes/routesModel';
+import { Box, Container, useTheme, Typography } from '@mui/material';
+import useUsers from '../hooks/useUsers';
+import useForm from '../../forms/hooks/useForm';
+import initialEditForm from '../helpers/initialForms/initialEditForm';
+import EditUserForm from '../components/EditUserForm';
+import editUserSchema from '../models/editUserSchema';
+import PageHeader from '../../components/PageHeader';
 
 export default function EditUserPage() {
   const { handleGetUser, handleUpdateUser } = useUsers();
   const { user } = useUser();
+  const theme = useTheme();
 
   const {
     data,
@@ -144,37 +145,49 @@ export default function EditUserPage() {
           title="Edit Account"
           subtitle="Here you can edit your account"
         />
-        <Container
-          sx={{
-            paddingTop: 8,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Box
-            sx={{
-              backgroundColor: "#FFFFE0", // Yellow background
-              borderRadius: "8px",
-              boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
-              padding: "20px",
-              marginBottom: "40px", // Margin bottom added to form
-            }}
-          >
-            {data && (
-              <EditUserForm
-                title="Edit Account"
-                onSubmit={onSubmit}
-                onReset={handleReset}
-                errors={errors}
-                validateForm={validateForm}
-                onInputChange={handleChange}
-                data={data}
-              />
-            )}
-          </Box>
-        </Container>
       </Box>
+      <Container
+        sx={{
+          
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          bgcolor: theme.palette.mode === "dark" ? "#000" : "#FFFFE0",
+          borderRadius: "8px",
+          boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
+         
+          marginTop: "30px",
+          marginBottom: "40px",
+          border: theme.palette.mode === "dark" ? "1px solid white" : "none",
+        }}
+      >
+        <Typography
+          sx={{
+            marginTop: "10px",
+        
+            textAlign: "center",
+            backgroundColor: theme.palette.mode === "dark" ? "#000" : "#FFFFE0",
+            padding: "10px",
+            borderRadius: "5px",
+          }}
+          variant="h5"
+          component="h2"
+          color={theme.palette.mode === "dark" ? "white" : "inherit"}
+        >
+          Edit Account
+        </Typography>
+        {data && (
+          <EditUserForm
+           
+            onSubmit={onSubmit}
+            onReset={handleReset}
+            errors={errors}
+            validateForm={validateForm}
+            onInputChange={handleChange}
+            data={data}
+          />
+        )}
+      </Container>
     </div>
   );
 }

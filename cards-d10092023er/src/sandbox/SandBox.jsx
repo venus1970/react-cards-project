@@ -23,6 +23,7 @@ export default function SandBox() {
           <NavItem to="formexample" label={<span style={{ color: 'violet', fontWeight: '600' }}>FormExample</span>} />
           
           <NavItem to="admincrmpanel" label={<span style={{ color: 'black', fontWeight: '600' }}>AdminCrmPanel</span>} />
+          <NavItem to="crm" label={<span style={{ color: 'green', fontWeight: '600' }}>Crm</span>} />
           
         </Toolbar>
       </AppBar>
