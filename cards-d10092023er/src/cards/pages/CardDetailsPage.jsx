@@ -43,11 +43,13 @@ export default function CardDetailsPage() {
              width:{xs:"100%",md:'50%'}}}>
               <Typography fontSize={20}><strong>Card Details:</strong></Typography>
               <Avatar 
-                sx={{borderRadius:1 ,width:'90%',height:300,mt:2 }}
+                sx={{borderRadius:1 ,width:'90%',height:300,mt:2 ,  border: 1,
+              borderColor: 'white'}}
                 src={card.image?.url}
                 alt={card.image?.alt}
               />  
-              <Paper elevation={5} sx={{mt:2,p:2,mb:2,width:"85%"}}>       
+              <Paper elevation={5} sx={{mt:2,p:2,mb:2,width:"85%", border: 1,
+              borderColor: 'white'}}>       
                 <Typography mt={1}><strong>Title:</strong> {card.title} </Typography>
                 <Typography mt={1}><strong>Subtitle:</strong> {card.subtitle} </Typography>
                 <Typography mt={1}><strong>BizNumber:</strong> {card.bizNumber} </Typography>
@@ -78,7 +80,17 @@ export default function CardDetailsPage() {
                address={card.address?.city +" "+ card.address?.street +" "+ card.address?.houseNumber}
               />
               </Box>
-              <Paper elevation={5} sx={{mt:2,p:2,mb:2,textAlign:'start',width:"85%"}}>
+          <Paper
+            elevation={5}
+            sx={{
+              mt: 2,
+              p: 2,
+              mb: 2,
+              textAlign: "start",
+              width: "85%",
+              border: 1,
+              borderColor: 'white'
+            }} >
               <Typography mt={1}><strong>Country:</strong> {card.address?.country} </Typography>
               <Typography mt={1}><strong>City:</strong> {card.address?.city} </Typography>
               <Typography mt={1}><strong>Street:</strong> {card.address?.street} </Typography>

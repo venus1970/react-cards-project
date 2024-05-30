@@ -72,6 +72,7 @@ import { useNavigate } from 'react-router-dom'
 import ROUTES from '../../routes/routesModel'
 import CardsFeedback from '../components/CardsFeedback'
 import FavoriteIcon from "@mui/icons-material/Favorite"
+import { useTheme } from "@mui/material";
 
 export default function MyCards() {
   const {
@@ -98,6 +99,7 @@ export default function MyCards() {
     await handleDeleteCard(id)
     handleGetMyCards() 
   }
+  const theme = useTheme();
 
   return (
     <div>
@@ -106,17 +108,18 @@ export default function MyCards() {
           title="My Cards"
         subtitle="On this page you can find all the cards you've created."
         />
-      <Box
+       <Box
   sx={{
-    backgroundColor: '#C9F8F3', 
-          borderRadius: "10px",
-          boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.25)",
-          border: "1px solid rgba(14, 122, 112, 0.2)",
+    backgroundColor: theme.palette.mode === 'dark' ? '#121212' : '#C9F8F3', // Dark mode background color
+    color: theme.palette.mode === 'dark' ? '#fff' : 'inherit', // Dark mode text color
+    borderRadius: "10px",
+    boxShadow: theme.palette.mode === 'dark' ? "0px 0px 10px rgba(255, 255, 255, 0.5)" : "0px 0px 10px rgba(0, 0, 0, 0.25)", // Dark mode shadow
+    border: "1px solid rgba(14, 122, 112, 0.2)",
     padding: '20px',
     width: '70%', // Adjusted width
     margin: 'auto',
     marginBottom: 0,
-    marginTop: "20px",
+    marginTop: "30px",
   }}
 >
   <Typography variant="body1" gutterBottom sx={{ color: 'text.primary' }}>

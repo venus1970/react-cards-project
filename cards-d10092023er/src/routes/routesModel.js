@@ -16,7 +16,7 @@ const ROUTES = {
   CONTACT_US: "/contact-us",
   ERROR: "/error",
   COUNTER: "/counter",
-  CRM: "/crm",
+  CRM_PANEL: "/crm-panel",
 
 
 };

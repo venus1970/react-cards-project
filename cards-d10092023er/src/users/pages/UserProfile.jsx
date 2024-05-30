@@ -54,7 +54,7 @@ export default function UserProfile() {
             sx={{
               width: 230,
               height: 230,
-              border: 10,
+              border: 5,
               borderColor: "white",
               borderRadius: "50%",
             }}
@@ -64,8 +64,9 @@ export default function UserProfile() {
             sx={{
               mt: 2,
               p: 2,
-              borderColor: "white",
-              shadow: 10,
+              borderColor: " white ",
+              border: 1,
+              
               }}
           >
             <Typography variant="h5" component="h2" fontWeight={600} gutterBottom>
@@ -93,7 +94,7 @@ export default function UserProfile() {
             m: 2,
             width: { xs: "90%", md: "40%" },
             height: { xs: "350px", md: "450px" },
-            border: 10,
+            border: 5,
             borderColor: "white",
           }}
         >

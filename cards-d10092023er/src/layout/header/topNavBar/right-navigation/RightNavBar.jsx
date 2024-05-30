@@ -37,6 +37,7 @@ export default function RightNavBar() {
             height: "30px",
             display: "flex",
             marginRight: "10px",
+            marginLeft: "13px",
           }}
           onClick={toggleDarkMode}
         >

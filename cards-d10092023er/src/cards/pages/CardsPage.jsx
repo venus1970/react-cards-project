@@ -5,6 +5,7 @@ import useCards from '../hooks/useCards';
 import AddNewCardButton from '../components/AddNewCardButton';
 import { Box, Divider, Typography } from '@mui/material';
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useTheme } from "@mui/material";
 
 export default function CardsPage() {
   const {
@@ -28,6 +29,7 @@ export default function CardsPage() {
   const onLike = async (id, isLiked) => {
     await handleCardLike(id, isLiked);
   };
+  const theme = useTheme();
 
   return (
     <div>
@@ -37,15 +39,16 @@ export default function CardsPage() {
       />
       <Box
   sx={{
-    backgroundColor: '#C9F8F3', 
-          borderRadius: "10px",
-          boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.25)",
-          border: "1px solid rgba(14, 122, 112, 0.2)",
+    backgroundColor: theme.palette.mode === 'dark' ? '#121212' : '#C9F8F3', // Dark mode background color
+    color: theme.palette.mode === 'dark' ? '#fff' : 'inherit', // Dark mode text color
+    borderRadius: "10px",
+    boxShadow: theme.palette.mode === 'dark' ? "0px 0px 10px rgba(255, 255, 255, 0.5)" : "0px 0px 10px rgba(0, 0, 0, 0.25)", // Dark mode shadow
+    border: "1px solid rgba(14, 122, 112, 0.2)",
     padding: '20px',
     width: '70%', // Adjusted width
     margin: 'auto',
     marginBottom: 0,
-    marginTop: "20px",
+    marginTop: "30px",
   }}
 >
   <Typography variant="body1" gutterBottom sx={{ color: 'text.primary' }}>

@@ -99,8 +99,8 @@ export default function LeftNavBar() {
 
           {user && user.isAdmin && 
        <NavItem
-         to={ROUTES.CRM} 
-         label="Crm" 
+         to={ROUTES.CRM_PANEL} 
+         label="CrmPanel" 
          sx={{color: isDark ? "white" : "black"}}
          aria-label="Navigate to AdminCrmPanel page"
          />}

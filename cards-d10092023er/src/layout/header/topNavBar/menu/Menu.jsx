@@ -5,7 +5,7 @@ import { useUser } from "../../../../users/providers/UserProvider";
 import useUsers from "../../../../users/hooks/useUsers";
 import ROUTES from "../../../../routes/routesModel";
 import MenuLink from "../../../../routes/components/MenuLink";
-import { useTheme } from "../../../../providers/CustomThemeProvider";
+import { useTheme } from "@mui/material";
 import { IconButton } from "@mui/material";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
@@ -21,6 +21,7 @@ const Menu = ({ isOpen, anchorEl, onClose }) => {
     handleLogout();
     onClose();
   };
+  const theme = useTheme();
 
   return (
     <MuiMenu
@@ -69,7 +70,16 @@ const Menu = ({ isOpen, anchorEl, onClose }) => {
           </Box>
         )}
         {user && (
-          <Box>
+          <Box  sx={{ backgroundColor: theme.palette.mode === 'dark' ? '#121212' : '#fff', // Dark mode background color
+    color: theme.palette.mode === 'dark' ? '#fff' : 'inherit', // Dark mode text color
+              borderRadius: "5px",
+             
+              
+    boxShadow: theme.palette.mode === 'dark' ? '5px 5px 5px rgba(255, 255, 255, 0.5)' : 'none',
+        p: 1, // Padding
+    // Margin bottom
+    }}> 
+         
             <MenuLink
               text="profile"
               navigateTo={ROUTES.USER_PROFILE}

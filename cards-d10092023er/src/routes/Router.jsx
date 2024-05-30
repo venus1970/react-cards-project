@@ -23,9 +23,9 @@ import AddCardPage from "../cards/pages/AddCardPage";
 import EditCardPage from "../cards/pages/EditCardPage";
 import MapPage from "../sandbox/map/MapPage";
 import EditUserPage from '../users/pages/EditUserPage';
-import Crm from "../cards/pages/Crm";
-
+import CrmPanel from "../users/pages/CrmPanel";
 import ContactUs from "../pages/ContactUs";
+
 
 export default function Router() {
   return (
@@ -43,14 +43,14 @@ export default function Router() {
       <Route path={ROUTES.CONTACT_US} element={<ContactUs />} />     
       <Route path={ROUTES.MAP} element={<MapPage />} />
       <Route path={ROUTES.CREATE_CARD} element={<AddCardPage />} />
-      <Route path={ROUTES.CRM} element={<Crm />} />
+      <Route path={ROUTES.CRM_PANEL} element={<CrmPanel />} />
       <Route path={ROUTES.EDIT_CARD + "/:id"} element={<EditCardPage />} />
       <Route path={ROUTES.SANDBOX} element={<SandBox />}>
         <Route path="counter" element={<Counter />} />
         <Route path="counter1" element={<Counter1 />} />
         <Route path="changesize" element={<ChangeSize />} />
         <Route path="shapetransformer" element={<ShapeTransformer />} />
-        <Route path="crm" element={<Crm />} />
+        <Route path="crmpanel" element={<CrmPanel />} />
         
        
         <Route path="countries" element={<Countries />} />
