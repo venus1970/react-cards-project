@@ -52,7 +52,11 @@ const ContactUs = () => {
               }}
             />
             <Divider sx={{ marginTop: "10px", marginBottom: "10px" }} />
-            <Typography variant="body1" gutterBottom>
+            <Typography
+              variant="body1"
+              gutterBottom
+              sx={{ color: "black", fontSize: "20px" }}
+            >
               <strong>Contact Details:</strong>
             </Typography>
             <Grid container spacing={2}>

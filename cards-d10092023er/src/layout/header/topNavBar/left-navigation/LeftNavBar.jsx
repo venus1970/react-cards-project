@@ -1,35 +1,3 @@
-/*import React from "react";
-import { Box } from "@mui/material";
-import LogoIcon from "../logo/LogoIcon";
-import Logo from "../logo/Logo";
-import NavItem from "../../../../routes/components/NavItem";
-import ROUTES from "../../../../routes/routesModel";
-import { useUser } from "../../../../users/providers/UserProvider";
-
-export default function LeftNavBar() {
-  const { user } = useUser();
-  
-  return (
-    <Box>
-      <LogoIcon />
-      <Logo />
-      <Box sx={{ display: { xs: "none", md: "inline-flex" } }}>
-    
-      <NavItem label="About" to={ROUTES.ABOUT} />
-      {user && user.isBusiness && (
-        <>
-      <NavItem label="Business Cards" to={ROUTES.CARDS} />
-      <NavItem label="Fav Cards" to={ROUTES.FAV_CARDS} />
-      <NavItem label="My Cards" to={ROUTES.MY_CARDS} />
-     </>
-     )}
-     {user && user.isAdmin && <NavItem label="sandbox" to="/sandbox" />}
-    
-     </Box>
-    </Box>
-  );
-};
-*/
 import { Box } from '@mui/material'
 import React from 'react'
 import LogoIcon from '../logo/LogoIcon'
@@ -88,14 +56,16 @@ export default function LeftNavBar() {
          sx={{color: isDark ? "white" : "black"}}
          aria-label="Navigate to Contact Us page"
          />
-
-     {user && user.isAdmin && 
+        
+        {/*here is hidden sandbox for admin*/}
+        
+     {/* {user && user.isAdmin && 
        <NavItem
          to={ROUTES.SANDBOX} 
          label="Sandbox" 
          sx={{color: isDark ? "white" : "black"}}
          aria-label="Navigate to Sandbox page"
-         />}
+         />} */}
 
           {user && user.isAdmin && 
        <NavItem

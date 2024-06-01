@@ -81,12 +81,12 @@ const Menu = ({ isOpen, anchorEl, onClose }) => {
     }}> 
          
             <MenuLink
-              text="profile"
+              text="User profile"
               navigateTo={ROUTES.USER_PROFILE}
               onClick={onClose}
             />
             <MenuLink
-              text="edit account"
+              text="Edit account"
               navigateTo={ROUTES.EDIT_USER}
               onClick={onClose} 
             />

@@ -1,42 +1,7 @@
-/*import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-
-const AdminCRMPanel = () => {
-  const [usernames, setUsernames] = useState([]);
-
-  useEffect(() => {
-    const fetchUsernames = async () => {
-      try {
-        const response = await axios.get("https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users");
-        const usernames = response.data.map(user => user.username);
-        setUsernames(usernames);
-      } catch (error) {
-        console.error('Error fetching usernames:', error);
-      }
-    };
-
-    fetchUsernames();
-  }, []);
-
-  return (
-    <div>
-      <h1>User Management: Admin CRM Panel</h1>
-      <h2>List of Users</h2>
-      <ul>
-        {usernames.map(username => (
-          <li key={username}>{username}</li>
-        ))}
-      </ul>
-    </div>
-  );
-};
-
-export default AdminCRMPanel;
-*/
-
-/*import React, { useEffect, useState } from "react";
-import { Button, Paper, Table, TableBody, TableCell, Container, TableHead, TableRow, TableContainer, Typography, Collapse, Box } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Button, Paper, Table, TableBody, TableCell, Container, TableHead, TableRow, TableContainer, Typography, Collapse, Box, Pagination } from "@mui/material";
 import useUsers from "../hooks/useUsers";
+import DeleteIcon from '@mui/icons-material/Delete';
 import Spinner from "../../components/Spinner";
 import UserDeleteAndStatusDialog from "./UserDeleteAndStatusDialog";
 import PageHeader from "../../components/PageHeader";
@@ -46,19 +11,14 @@ import EditIcon from '@mui/icons-material/Edit';
 import { useSnack } from "../../providers/SnackbarProvider";
 
 const CrmPanel = () => {
-  const { 
-    isLoading,  
-    filterUsers, 
-    handleDeleteUser,
-    handleUpdateUser, 
-    handleRefresh,
-    query,
-    setQuery} = useUsers();
+  const { isLoading, filterUsers, handleDeleteUser, handleChangeStatus, handleRefresh, query, setQuery} = useUsers();
   const [expandedRows, setExpandedRows] = useState({});
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [userIdToDelete, setUserIdToDelete] = useState(null);
   const [openEditDialog, setOpenEditDialog] = useState(false);
   const [userIdToEdit, setUserIdToEdit] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const usersPerPage = 6; 
   const {isDark} = useTheme()
   const setSnack = useSnack()
 
@@ -80,19 +40,21 @@ const CrmPanel = () => {
 
   const handleConfirmEdit = async () => {
     try {
-      const updatedUsers = filterUsers.map(user => {
-        if (user._id === userIdToEdit) {
-          return { ...user, isBusiness: !user.isBusiness };
-        }
-        return user;
-      });
-  
-      await handleUpdateUser(userIdToEdit, updatedUsers.find(user => user._id === userIdToEdit));
-      setOpenEditDialog(false);
-      setSnack("success", "User status changed successfully!" );
+      await handleChangeStatus(userIdToEdit);
+      setSnack("success", "User status changed successfully!");
     } catch (error) {
-      setSnack("error", "Failed to update user status");
+      setSnack("error", error.message || "Failed to update user status.");
+    } finally {
+      setOpenEditDialog(false);
     }
+  };
+  const indexOfLastUser = currentPage * usersPerPage;
+  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  const currentUsers = filterUsers.slice(indexOfFirstUser, indexOfLastUser);
+  const totalPages = Math.ceil(filterUsers.length / usersPerPage);
+
+  const handlePageChange = (event, value) => {
+    setCurrentPage(value);
   };
 
   if (isLoading) return <Spinner />;
@@ -102,28 +64,45 @@ const CrmPanel = () => {
     <Container>
         <PageHeader
         title="Welcome to CRM Panel"
-        subtitle="Here you can manage the users - click on a user to open delete and block user buttons."
+        subtitle="Here just a admin can manage the users - delete user or edit user (for change user's status)"
       />
       <Container sx={{width:"100%" ,pb:3}}>
-        <Box sx={{display:"flex",justifyContent:"space-between"}}>
-          <Button variant="contained" onClick={handleRefresh} sx={{ marginBottom: 2 }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            justifyContent: "space-between",
+            width: "100%",           
+            alignItems: "center",
+          }}
+        >
+          <Button
+            variant="contained"
+            onClick={handleRefresh}
+           sx={{ marginBottom: {xs: 2, md: 4}, marginRight: {md: 2}, marginTop: 4,  }}>
+       
             Refresh
-          </Button>
-          <SearchBar query={query} setQuery={setQuery} />
+          </Button >
+          <SearchBar      
+                                
+            query={query}
+            setQuery={setQuery}
+            
+          />
         </Box>
       <Paper sx={{ padding: 2 }}>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 300 }} aria-label="CRM Panel">
           <TableHead sx={{ fontWeight: "bold"}}>
-              <TableRow sx={{ backgroundColor: isDark ? "gray" : '#c1e5e2'}}>
+              <TableRow sx={{ backgroundColor: isDark ? "gray" : 'lightgreen'}}>
                 <TableCell> 
-                  <Typography variant="body1">First Name</Typography>
-                </TableCell>
-                <TableCell> 
-                  <Typography variant="body1">Last Name</Typography>
+                  <Typography variant="body1">Full Name</Typography>
                 </TableCell>
                 <TableCell>
                   <Typography variant="body1">Email</Typography>
+                </TableCell>
+                <TableCell> 
+                  <Typography variant="body1">Phone</Typography>
                 </TableCell>
                   <TableCell > 
                   <Typography variant="body1">Status</Typography>
@@ -131,55 +110,58 @@ const CrmPanel = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {filterUsers.map((user) => (
+              {currentUsers.map((user) => (
                 <React.Fragment key={user._id}>
                   <TableRow 
                     onClick={() => toggleRow(user._id)} 
                     sx={{ cursor: 'pointer', transition: 'background-color 0.3s', ':hover': { backgroundColor: isDark ? "gray" : '#f0f0f0' } }}>
                     <TableCell >
-                      <Typography variant="body2">{user.name.first}</Typography>
-                    </TableCell>
-                    <TableCell >
-                      <Typography variant="body2">{user.name.last}</Typography>
+                      <Typography variant="body2">{user.name.first}{" "}{user.name.last}</Typography>
                     </TableCell>
                     <TableCell 
                       sx={{ maxWidth: 150, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', fontSize: '0.875rem' }}>
                       <Typography variant="body2">{user.email}</Typography>
                     </TableCell>
                     <TableCell >
+                        <Typography variant="body2">{user.phone}</Typography>
+                    </TableCell>
+                    <TableCell >
                       <Typography variant="body2">{user.isBusiness ? "Biz" : "Personal"}</Typography>
                     </TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell colSpan={3} sx={{ paddingBottom: 0, paddingTop: 0 }}>
+                    <TableCell colSpan={4} sx={{ paddingBottom: 0, paddingTop: 0 }}>
                       <Collapse in={expandedRows[user._id]} timeout="auto" unmountOnExit>
                         <Box sx={{display:"flex",justifyContent:"center"}} >
-                        <Paper sx={{ width:"50%",margin: 1,p:3}}>
-                        <Typography variant="body1" gutterBottom>
+                        <Paper sx={{ width:"40%",m:4,p:3}} elevation={3}>
+                        <Typography variant="body1" mb={2} gutterBottom>
+                          <strong>name:</strong> {user.name.first}{" "}{user.name.last}
+                        </Typography>
+                        <Typography variant="body1" mb={2} gutterBottom>
                           <strong>Email:</strong> {user.email}
                         </Typography>
-                        <Typography variant="body1" gutterBottom>
+                        <Typography variant="body1" mb={2} gutterBottom>
                           <strong>Phone:</strong> {user.phone}
                         </Typography>
-                         <Box m={2} >
-                            <Button
-                                 sx={{mr:1}}
-                                  variant="contained"
+                        <Typography variant="body1" mb={2} gutterBottom>
+                          <strong>autoLevel:</strong> {user.isBusiness ? "Biz" : "Personal"}
+                        </Typography>
+                         <Box textAlign="center" >
+                            <Button sx={{mr:1,mt:2}} variant="contained"
                                   onClick={() => {
                                     setUserIdToEdit(user._id);
                                     setOpenEditDialog(true);
                                   }}
                                   startIcon={<EditIcon />}
                                 >
-                                    Edit
+                                  Edit  
                                 </Button>
-                            <Button
-                                  variant="contained"
-                                  color="error"
+                            <Button sx={{mt:2}} variant="contained" color="error"
                                   onClick={() => {
                                     setUserIdToDelete(user._id);
                                     setOpenDeleteDialog(true);
                                   }}
+                                  startIcon={<DeleteIcon />}
                                 >
                                   Delete
                                 </Button>
@@ -194,381 +176,27 @@ const CrmPanel = () => {
             </TableBody>
           </Table>
         </TableContainer>
+       <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
+  <Pagination count={totalPages} page={currentPage} onChange={handlePageChange} color="primary"/>
+</Box>
+<Box sx={{ textAlign: "center", mt: 2 }}>
+  <Typography variant="body1">
+    Total number of updated users: {currentUsers.length - filterUsers.length}
+  </Typography>
+</Box>
       </Paper>
       <UserDeleteAndStatusDialog
-          open={openEditDialog}
-          onClose={() => setOpenEditDialog(false)}
-          onConfirm={handleConfirmEdit}
-          title="Change User Status"
-          message="Are you sure you want to change the status of this user?"
-        />
-
-      <UserDeleteAndStatusDialog
-        open={openDeleteDialog}
-        onClose={() => setOpenDeleteDialog(false)}
-        onConfirm={handleConfirmDelete}
-        title="Delete User"
-        message="Are you sure you want to delete this user?"
+        openDeleteDialog={openDeleteDialog}
+        setOpenDeleteDialog={setOpenDeleteDialog}
+        handleConfirmDelete={handleConfirmDelete}
+        openEditDialog={openEditDialog}
+        setOpenEditDialog={setOpenEditDialog}
+        handleConfirmEdit={handleConfirmEdit}
       />
-      </Container>
-    </Container>
-  );
-};
 
-export default CrmPanel;*/
-
-/*
-import React, { useEffect, useState } from "react";
-import { Button, Paper, Table, TableBody, TableCell, Container, TableHead, TableRow, TableContainer, Typography, Collapse, Box } from "@mui/material";
-import useUsers from "../hooks/useUsers";
-import Spinner from "../../components/Spinner";
-import UserDeleteAndStatusDialog from "./UserDeleteAndStatusDialog";
-import PageHeader from "../../components/PageHeader";
-import SearchBar from "../../layout/header/topNavBar/right-navigation/SearchBar";
-import { useTheme } from "../../providers/CustomThemeProvider";
-import EditIcon from '@mui/icons-material/Edit';
-import { useSnack } from "../../providers/SnackbarProvider";
-
-const CrmPanel = () => {
-  const { 
-    isLoading,  
-    filterUsers, 
-    handleDeleteUser,
-    handleUpdateUser, 
-    handleRefresh,
-    query,
-    setQuery} = useUsers();
-  const [expandedRows, setExpandedRows] = useState({});
-  const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
-  const [userIdToDelete, setUserIdToDelete] = useState(null);
-  const [openEditDialog, setOpenEditDialog] = useState(false);
-  const [userIdToEdit, setUserIdToEdit] = useState(null);
-  const {isDark} = useTheme()
-  const setSnack = useSnack()
-
-  useEffect(() => {
-   handleRefresh()
-  }, [handleRefresh]);
-
-  const toggleRow = (userId) => {
-    setExpandedRows((prev) => ({
-      ...prev,
-      [userId]: !prev[userId],
-    }));
-  };
-
-  const handleConfirmDelete = () => {
-    handleDeleteUser(userIdToDelete);
-    setOpenDeleteDialog(false);
-  };
-
-  const handleConfirmEdit = async () => {
-    try {
-      const updatedIsBusiness = !filterUsers.find(user => user._id === userIdToEdit).isBusiness;
-      await handleUpdateUser(userIdToEdit, { isBusiness: updatedIsBusiness });
-      setOpenEditDialog(false);
-      setSnack("success", "User status changed successfully!");
-    } catch (error) {
-      setSnack("error", "Failed to update user status");
-    }
-  };
-
-  if (isLoading) return <Spinner />;
-
-  return (
-    <Container>
-      <PageHeader
-        title="Welcome to CRM Panel"
-        subtitle="Here you can manage the users - click on a user to open delete and block user buttons."
-      />
-      <Container sx={{width:"100%" ,pb:3}}>
-        <Box sx={{display:"flex",justifyContent:"space-between"}}>
-          <Button variant="contained" onClick={handleRefresh} sx={{ marginBottom: 2 }}>
-            Refresh
-          </Button>
-          <SearchBar query={query} setQuery={setQuery} />
-        </Box>
-        <Paper sx={{ padding: 2 }}>
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 300 }} aria-label="CRM Panel">
-              <TableHead sx={{ fontWeight: "bold"}}>
-                <TableRow sx={{ backgroundColor: isDark ? "gray" : '#c1e5e2'}}>
-                  <TableCell> 
-                    <Typography variant="body1">First Name</Typography>
-                  </TableCell>
-                  <TableCell> 
-                    <Typography variant="body1">Last Name</Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography variant="body1">Email</Typography>
-                  </TableCell>
-                  <TableCell > 
-                    <Typography variant="body1">Status</Typography>
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {filterUsers.map((user) => (
-                  <React.Fragment key={user._id}>
-                    <TableRow 
-                      onClick={() => toggleRow(user._id)} 
-                      sx={{ cursor: 'pointer', transition: 'background-color 0.3s', ':hover': { backgroundColor: isDark ? "gray" : '#f0f0f0' } }}>
-                      <TableCell >
-                        <Typography variant="body2">{user.name.first}</Typography>
-                      </TableCell>
-                      <TableCell >
-                        <Typography variant="body2">{user.name.last}</Typography>
-                      </TableCell>
-                      <TableCell 
-                        sx={{ maxWidth: 150, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', fontSize: '0.875rem' }}>
-                        <Typography variant="body2">{user.email}</Typography>
-                      </TableCell>
-                      <TableCell >
-                        <Typography variant="body2">{user.isBusiness ? "Biz" : "Personal"}</Typography>
-                      </TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell colSpan={3} sx={{ paddingBottom: 0, paddingTop: 0 }}>
-                        <Collapse in={expandedRows[user._id]} timeout="auto" unmountOnExit>
-                          <Box sx={{display:"flex",justifyContent:"center"}} >
-                            <Paper sx={{ width:"50%",margin: 1,p:3}}>
-                              <Typography variant="body1" gutterBottom>
-                                <strong>Email:</strong> {user.email}
-                              </Typography>
-                              <Typography variant="body1" gutterBottom>
-                                <strong>Phone:</strong> {user.phone}
-                              </Typography>
-                              <Box m={2} >
-                                <Button
-                                  sx={{mr:1}}
-                                  variant="contained"
-                                  onClick={() => {
-                                    setUserIdToEdit(user._id);
-                                    setOpenEditDialog(true);
-                                  }}
-                                  startIcon={<EditIcon />}
-                                >
-                                  Edit
-                                </Button>
-                                <Button
-                                  variant="contained"
-                                  color="error"
-                                  onClick={() => {
-                                    setUserIdToDelete(user._id);
-                                    setOpenDeleteDialog(true);
-                                  }}
-                                >
-                                  Delete
-                                </Button>
-                              </Box>
-                            </Paper>
-                          </Box>
-                        </Collapse>
-                      </TableCell>
-                    </TableRow>
-                  </React.Fragment>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Paper>
-        <UserDeleteAndStatusDialog
-          open={openEditDialog}
-          onClose={() => setOpenEditDialog(false)}
-          onConfirm={handleConfirmEdit}
-          title="Change User Status"
-          message="Are you sure you want to change the status of this user?"
-        />
-        <UserDeleteAndStatusDialog
-          open={openDeleteDialog}
-          onClose={() => setOpenDeleteDialog(false)}
-          onConfirm={handleConfirmDelete}
-          title="Delete User"
-          message="Are you sure you want to delete this user?"
-        />
       </Container>
     </Container>
   );
 };
 
 export default CrmPanel;
-*/
-import React, { useEffect, useState } from "react";
-import { Button, Paper, Table, TableBody, TableCell, Container, TableHead, TableRow, TableContainer, Typography, Collapse, Box } from "@mui/material";
-import useUsers from "../hooks/useUsers";
-import Spinner from "../../components/Spinner";
-import UserDeleteAndStatusDialog from "./UserDeleteAndStatusDialog";
-import PageHeader from "../../components/PageHeader";
-import SearchBar from "../../layout/header/topNavBar/right-navigation/SearchBar";
-import { useTheme } from "../../providers/CustomThemeProvider";
-import EditIcon from '@mui/icons-material/Edit';
-import { useSnack } from "../../providers/SnackbarProvider";
-
-const CrmPanel = () => {
-  const { 
-    isLoading,  
-    filterUsers, 
-    handleDeleteUser,
-    handleUpdateUser, 
-    handleRefresh,
-    query,
-    setQuery} = useUsers();
-  const [expandedRows, setExpandedRows] = useState({});
-  const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
-  const [userIdToDelete, setUserIdToDelete] = useState(null);
-  const [openEditDialog, setOpenEditDialog] = useState(false);
-  const [userIdToEdit, setUserIdToEdit] = useState(null);
-  const { isDark } = useTheme();
-  const setSnack = useSnack();
-
-  useEffect(() => {
-    handleRefresh();
-  }, [handleRefresh]);
-
-  const toggleRow = (userId) => {
-    setExpandedRows((prev) => ({
-      ...prev,
-      [userId]: !prev[userId],
-    }));
-  };
-
-  const handleConfirmDelete = () => {
-    handleDeleteUser(userIdToDelete);
-    setOpenDeleteDialog(false);
-  };
-
-  const handleConfirmEdit = async () => {
-    try {
-      const updatedIsBusiness = !filterUsers.find((user) => user._id === userIdToEdit).isBusiness;
-      await handleUpdateUser(userIdToEdit, { isBusiness: updatedIsBusiness });
-      setOpenEditDialog(false);
-      setSnack("success", "User status changed successfully!");
-    } catch (error) {
-      setSnack("error", "Failed to update user status");
-    }
-  
-  };
- 
-
-  if (isLoading) return <Spinner />;
-
-  return (
-    <Container>
-      <PageHeader
-        title="Welcome to CRM Panel"
-        subtitle="Here you can manage the users - click on a user to open delete and block user buttons."
-      />
-      <Container sx={{ width: "100%", pb: 3 }}>
-        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-          <Button variant="contained" onClick={handleRefresh} sx={{ marginBottom: 2 }}>
-            Refresh
-          </Button>
-          <SearchBar query={query} setQuery={setQuery} />
-        </Box>
-        <Paper sx={{ padding: 2 }}>
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 300 }} aria-label="CRM Panel">
-              <TableHead sx={{ fontWeight: "bold" }}>
-                <TableRow sx={{ backgroundColor: isDark ? "gray" : '#c1e5e2' }}>
-                  <TableCell>
-                    <Typography variant="body1">First Name</Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography variant="body1">Last Name</Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography variant="body1">Email</Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography variant="body1">Status</Typography>
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {filterUsers.map((user) => (
-                  <React.Fragment key={user._id}>
-                    <TableRow
-                      onClick={() => toggleRow(user._id)}
-                      sx={{ cursor: 'pointer', transition: 'background-color 0.3s', ':hover': { backgroundColor: isDark ? "gray" : '#f0f0f0' } }}>
-                      <TableCell>
-                        <Typography variant="body2">{user.name.first}</Typography>
-                      </TableCell>
-                      <TableCell>
-                        <Typography variant="body2">{user.name.last}</Typography>
-                      </TableCell>
-                      <TableCell
-                        sx={{ maxWidth: 150, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', fontSize: '0.875rem' }}>
-                        <Typography variant="body2">{user.email}</Typography>
-                      </TableCell>
-                      <TableCell>
-                        <Typography variant="body2">{user.isBusiness ? "Business" : "Personal"}</Typography>
-                      </TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell colSpan={3} sx={{ paddingBottom: 0, paddingTop: 0 }}>
-                        <Collapse in={expandedRows[user._id]} timeout="auto" unmountOnExit>
-                          <Box sx={{ display: "flex", justifyContent: "center" }} >
-                            <Paper sx={{ width: "50%", margin: 1, p: 3 }}>
-                              <Typography variant="body1" gutterBottom>
-                                <strong>Email:</strong> {user.email}
-                              </Typography>
-                              <Typography variant="body1" gutterBottom>
-                                <strong>Phone:</strong> {user.phone}
-                              </Typography>
-                              <Box m={2} >
-                                <Button
-                                  sx={{ mr: 1 }}
-                                  variant="contained"
-                                  onClick={() => {
-                                    setUserIdToEdit(user._id);
-                                    setOpenEditDialog(true);
-                                  }}
-                                  startIcon={<EditIcon />}
-                                >
-                                  Edit
-                                </Button>
-                                <Button
-                                  variant="contained"
-                                  color="error"
-                                  onClick={() => {
-                                    setUserIdToDelete(user._id);
-                                    setOpenDeleteDialog(true);
-                                  }}
-                                >
-                                  Delete
-                                </Button>
-                              </Box>
-                            </Paper>
-                          </Box>
-                        </Collapse>
-                      </TableCell>
-                    </TableRow>
-                  </React.Fragment>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Paper>
-        <UserDeleteAndStatusDialog
-          open={openEditDialog}
-          onClose={() => setOpenEditDialog(false)}
-          onConfirm={handleConfirmEdit}
-          title="Change User Status"
-          message="Are you sure you want to change the status of this user?"
-        />
-        <UserDeleteAndStatusDialog
-          open={openDeleteDialog}
-          onClose={() => setOpenDeleteDialog(false)}
-          onConfirm={handleConfirmDelete}
-          title="Delete User"
-          message="Are you sure you want to delete this user?"
-        />
-      </Container>
-    </Container>
-  );
-};
-
-export default CrmPanel;
-
-
-

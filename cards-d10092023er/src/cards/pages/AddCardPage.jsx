@@ -34,7 +34,7 @@ export default function AddCardPage() {
     }}
     >
      <PageHeader
-        title="Welcome to Create card page"
+        title="Welcome Edit card page"
         subtitle="Here you can create card"
       />
     <Container

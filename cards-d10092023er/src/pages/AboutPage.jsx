@@ -41,7 +41,6 @@ const AboutPage = () => {
         sx={{
           backgroundColor: theme.palette.mode === "dark" ? "#121212" : "#C9F8F3",
           color: theme.palette.mode === "dark" ? "#ffffff" : "#000000",
-          padding: "20px",
           margin: "20px auto",
           width: { xs: "90%", md: "70%" },
           borderRadius: "10px",
@@ -50,7 +49,8 @@ const AboutPage = () => {
           textAlign: "center", // Added to center align content
           marginTop: "30px",
           marginBottom: "0px",
-        }}
+          padding: "30px",
+          }}
       >
         <Avatar
           src="/assets/images/fav3.png"
@@ -77,91 +77,115 @@ const AboutPage = () => {
             <FavoriteIcon key={index} color="error" fontSize="large" />
           ))}
         </Divider>
-        <Typography variant="body1">
-          <strong>React Business Card Project: Explained Introduction, Key Functionality, and Conclusion</strong>
+        <Typography
+          variant="body1"
+          fontSize={"20px"}
+          marginBottom={4}
+          color={theme.palette.mode === "dark" ? "#ffffff" : "blue"}
+        >
+          <strong>Business Card Application: All information, Explained Introduction, Key Functionality, and Conclusion</strong>
           <br />
           <br />
-          <strong>Introduction</strong>
-          <br />
+        </Typography>
+        <Typography variant="body1" align="left" marginBottom={4}>
+          <strong>About us</strong>
+          <br />Welcome to BCard, your ultimate solution for creating, browsing, and
+          managing business cards with ease. Our innovative platform is designed
+          to cater to professionals and businesses of all sizes, offering a
+          seamless and efficient way to handle all your business card needs.
           The React Business Card Project is a web application designed to streamline the management of business cards. It provides users with a platform to create, edit, and organize their business contacts efficiently. Built using React, the project offers a modern and user-friendly interface, coupled with robust features to enhance productivity and organization.
           <br /><br />
-
-          <Typography variant="body1" align="left">
-            <strong>Key Functionality</strong>
+        </Typography>
+        <Typography variant="body1" align="left" marginBottom={4}>
+          <strong>Our mission</strong>
+          <br />At BCard, we strive to simplify the way you network and manage your
+          professional connections. Our mission is to provide a user-friendly,
+          powerful tool that helps you create stunning business cards,
+          efficiently manage your contacts, and enhance your professional
+          presence. So, what are you waiting for? Create your business card today!
+          <br /><br />
+        </Typography>
+        <Typography variant="body1" align="left" marginBottom={4}>
+          <strong>What we offer</strong>
+          <br />Be brave and bold to try create and design unique and professional business cards effortlessly with our intuitive creation tools. Choose from a variety of templates, customize every detail, and ensure your business card stands out.
+          <br /><br />
+        </Typography>
+        <Typography variant="body1" align="left" marginBottom={4}>
+          <strong>Browse and join!</strong>
+          <br />Explore a wide range of business cards within our app. Find
+          inspiration, discover new contacts, and connect with professionals
+          from various industries. So, what are you waiting for? Let's get started!
+          <br /><br />
+        </Typography>
+        <Typography variant="body1" align="left">
+          <strong>Key Functionality</strong>
+          <br />
+          <ol>
+            <li>
+              <strong>Business Card Management:</strong> The core functionality of the project revolves around managing business cards. Users can create, edit, and delete business cards, allowing them to keep their contact database up-to-date.
+            </li>
+            <li>
+              <strong>User Authentication:</strong> The project includes a robust authentication system to ensure secure access to user accounts. Key features include user registration, login, and token-based authentication for secure access to protected resources.
+            </li>
+            <li>
+              <strong>Role-based Access Control:</strong> Role-based access control (RBAC) is implemented to manage user permissions effectively. Admin users have elevated privileges, while regular users have standard access to business card management features.
+            </li>
+            <li>
+              <strong>Favorite Business Cards:</strong> Users can mark specific business cards as favorites for quick access and prioritization, streamlining their workflow.
+            </li>
+            <li>
+              <strong>Dynamic Navigation:</strong> The application features a dynamic navigation menu that adjusts based on the user's role and permissions, providing intuitive access to various sections of the application.
+            </li>
+            <li>
+              <strong>Admin CRM panel:</strong>  Our comprehensive CRM features enable admins to manage business card data, users data, and maintain valuable business relationships. Stay on top of your networking game with advanced analytics and reporting tools.
+            </li>
+          </ol>
+        </Typography>
+        
             <br />
-            <ol>
-              <li>
-                <strong>Business Card Management:</strong> The core functionality of the project revolves around managing business cards. Users can create, edit, and delete business cards, allowing them to keep their contact database up-to-date.
-              </li>
-              <li>
-                <strong>User Authentication:</strong> The project includes a robust authentication system to ensure secure access to user accounts. Key features include user registration, login, and token-based authentication for secure access to protected resources.
-              </li>
-              <li>
-                <strong>Role-based Access Control:</strong> Role-based access control (RBAC) is implemented to manage user permissions effectively. Admin users have elevated privileges, while regular users have standard access to business card management features.
-              </li>
-              <li>
-                <strong>Favorite Business Cards:</strong> Users can mark specific business cards as favorites for quick access and prioritization, streamlining their workflow.
-              </li>
-              <li>
-                <strong>Dynamic Navigation:</strong> The application features a dynamic navigation menu that adjusts based on the user's role and permissions, providing intuitive access to various sections of the application.
-              </li>
-              {showFullContent && (
-                <li>
-                  <strong>Accessibility:</strong> Accessibility in React projects is crucial for ensuring that web applications are usable by everyone, including those with disabilities. This web application is more inclusive and usable for all users, regardless of their abilities or assistive technologies. Here's an explanation of various accessibility concepts in this React project:
-                  <ul>
-                    <li><strong>Alt Text:</strong> Alt text, or alternative text, is used to describe the content of an image. It is essential for users who are visually impaired or for situations where images cannot be loaded. In React, you can include alt text in JSX using the alt attribute of the img element.</li>
-                    <li><strong>Labels:</strong> Proper labeling of interactive elements, such as form fields and buttons, is vital for screen reader users to understand the purpose of each element. The project uses the htmlFor attribute with the label element to associate a label with its corresponding form control.</li>
-                    <li><strong>Titles:</strong> Titles for web pages and components help users navigate and understand the content better. You can set the title of a component using the document.title property or the title attribute on specific elements.</li>
-                    <li><strong>Favicon:</strong> A favicon is the small icon displayed in the browser tab or next to the URL in the address bar. A favicon helps users identify your website easily when multiple tabs are open.</li>
-                  </ul>
-                </li>
-              )}
-                      
-                            
               <AccessibleIcon              
                 fontSize="large"                    
                 color="primary"
                 />
-            </ol>
-            
-            {showFullContent && (
-              <>
-                <strong>Conclusion</strong>
-                <br />
-                The React Business Card Project offers a comprehensive solution for managing business contacts effectively. With its user-friendly interface, robust authentication system, and advanced features such as role-based access control and favorite cards management, the project caters to the needs of both individual users and businesses. Whether you're a professional looking to organize your contacts or an organization seeking to streamline communication, this project provides the tools you need to succeed.
-                <br />
-              </>
-            )}
+      <br />
+        <br />
+        {showFullContent && (
+          <Typography variant="body1" align="left">
+            <strong>Accessibility:</strong> Accessibility in React projects is crucial for ensuring that web applications are usable by everyone, including those with disabilities. This web application is more inclusive and usable for all users, regardless of their abilities or assistive technologies. Here's an explanation of various accessibility concepts in this React project:
+            <ul>
+              <li><strong>Alt Text:</strong> Alt text, or alternative text, is used to describe the content of an image. It is essential for users who are visually impaired or for situations where images cannot be loaded. In React, you can include alt text in JSX using the alt attribute of the img element.</li>
+              <li><strong>Labels:</strong> Proper labeling of interactive elements, such as form fields and buttons, is vital for screen reader users to understand the purpose of each element. The project uses the htmlFor attribute with the label element to associate a label with its corresponding form control.</li>
+              <li><strong>Titles:</strong> Titles for web pages and components help users navigate and understand the content better. You can set the title of a component using the document.title property or the title attribute on specific elements.</li>
+              <li><strong>Favicon:</strong> A favicon is the small icon displayed in the browser tab or next to the URL in the address bar. A favicon helps users identify your website easily when multiple tabs are open.</li>
+            </ul>
           </Typography>
-          <Button
-            onClick={toggleContent}
-            sx={{
-              marginTop: 2,
-              marginBottom: 2,
-              backgroundColor: theme.palette.mode === "dark" ? "#1976d2" : "#2196f3",
-              color: "#ffffff",
-              "&:hover": {
-                backgroundColor: theme.palette.mode === "dark" ? "#1565c0" : "#1976d2",
-              },
-            }}
-          >
-            {showFullContent ? "Read Less" : "Read More"}
-          </Button>
-        </Typography>
-        <Divider
+        )}
+
+                   
+        <Button
+          onClick={toggleContent}
           sx={{
-            margin: "20px auto",
-            width: "50px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            marginTop: 2,
+            marginBottom: 2,
+            backgroundColor: theme.palette.mode === "dark" ? "#1976d2" : "#2196f3",
+            color: "#ffffff",
+            "&:hover": {
+              backgroundColor: theme.palette.mode === "dark" ? "#1565c0" : "#1976d2",
+            },
           }}
         >
-          {[...Array(3)].map((_, index) => (
-            <FavoriteIcon key={index} color="error" fontSize="large" />
-          ))}
-        </Divider>
-
+          {showFullContent ? "Read Less" : "Read More"}
+        </Button>
+        {showFullContent && (
+          <>
+            <Typography variant="body1" align="left">
+              <strong>Conclusion</strong>
+              <br />
+              The React Business Card Project offers a comprehensive solution for managing business contacts effectively. With its user-friendly interface, robust authentication system, and advanced features such as role-based access control and favorite cards management, the project caters to the needs of both individual users and businesses. Whether you're a professional looking to organize your contacts or an organization seeking to streamline communication, this project provides the tools you need to succeed.
+              <br />
+            </Typography>
+          </>
+        )}
 
         <Typography variant="body1" align="left">
           <strong>Card example: card like this, you can see on cards page</strong>
@@ -230,7 +254,7 @@ const AboutPage = () => {
             border: `5px solid ${theme.palette.primary.main}`,
           }}
         />
-
+      
       </Box>
     </div>
   );

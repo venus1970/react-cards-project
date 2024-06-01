@@ -1,11 +1,12 @@
 import React from "react";
 import LeftNavBar from "./left-navigation/LeftNavBar";
-import { AppBar, Toolbar, useTheme } from "@mui/material";
+import { AppBar, Toolbar, useMediaQuery, useTheme } from "@mui/material"; // Import useMediaQuery hook
 import RightNavBar from "./right-navigation/RightNavBar";
 import { MenuProvider } from "./menu/MenuProvider";
 
 export default function NavBar() {
   const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // Check if screen size is small (mobile)
 
   return (
     <MenuProvider>
@@ -21,8 +22,8 @@ export default function NavBar() {
           },
         }}
       >
-        <Toolbar sx={{ justifyContent: "space-between" }}>
-          <LeftNavBar />
+        <Toolbar sx={{ justifyContent: isMobile ? "center" : "space-between" }}> {/* Center the content on small screens */}
+          {!isMobile && <LeftNavBar />} {/* Display LeftNavBar only on larger screens */}
           <RightNavBar />
         </Toolbar>
       </AppBar>
@@ -30,33 +31,3 @@ export default function NavBar() {
   );
 }
 
-/*
-import React, { useContext } from "react";
-import LeftNavBar from "./left-navigation/LeftNavBar";
-import { AppBar, Input, Toolbar } from "@mui/material";
-import RightNavBar from "./right-navigation/RightNavBar";
-import { MenuProvider } from "./menu/MenuProvider";
-import UserSearchContext from "../../../providers/UserSearchContext";
-
-export default function NavBar() {
-  const { handleKeySearchContext } = useContext(UserSearchContext)
-
-  const handleChange = (userInput) => {
-    handleKeySearchContext(userInput)
-  }
-
-  return (
-    <MenuProvider>
-      <AppBar position="sticky" color="primary" elevation={10}>
-        <Toolbar sx={{ justifyContent: "space-between" }}>
-          <LeftNavBar />
-
-          <Input onChange={e => handleChange(e.target.value)} />
-
-          <RightNavBar />
-        </Toolbar>
-      </AppBar>
-    </MenuProvider>
-  );
-}
-*/

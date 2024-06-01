@@ -36,28 +36,4 @@ export default function PageHeader({ title, subtitle }) {
   );
 }
 
-/*
-import React from "react";
-import { Divider, Typography } from "@mui/material";
-import { useTheme } from "../providers/CustomThemeProvider";
 
-export default function PageHeader({ title, subtitle }) {
-  const { isDark } = useTheme();
-  const elemStyle = isDark ? "white" : "black";
-
-  return (
-    <div style={{ textAlign: "center", margin: "auto" }}>
-      <Typography variant="h2" component="h1" sx={{ color: elemStyle }}>
-        {title}
-      </Typography>
-      <Typography variant="h5" component="h2" sx={{ color: elemStyle }}>
-        {subtitle}
-      </Typography>
-
-      <p style={{ color: elemStyle }}>Hello world</p>
-
-      <Divider sx={{ my: 2 }} />
-    </div>
-  );
-}
-*/

@@ -22,8 +22,8 @@ export default function AddNewCardButton() {
       title="Add new card"
       sx={{
         position: "fixed",
-        bottom: 75,
-        right: 16,
+        bottom: 95,
+        right: 25,
         backgroundColor: theme.palette.mode === "dark" ? "#FFD900" : "#FFC0CB", // Pink color in light mode, gold in dark mode
         borderColor: theme.palette.mode === "dark" ? "#FFD700" : "#0000FF", // Blue border in light mode, gold in dark mode
         boxShadow: theme.palette.mode === "dark" ? "0 2px 5px rgba(255, 255, 255, 0.2)" : "none", // Ionize white shadow in dark mode

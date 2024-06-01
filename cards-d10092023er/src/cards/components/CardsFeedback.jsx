@@ -27,7 +27,7 @@ export default function CardsFeedback({
           color={isDark ? "white" : "black"}>
                     Oops... it seems there are no business cards to display
                 </Typography>
-                <img src="/assets/images/ooops.png" alt="ooops" style={{ maxWidth: '100%', display: 'block', margin: '0 auto', border: '3px solid #ccc', borderRadius: '20px' }} />
+                {/*<img src="/assets/images/ooops.png" alt="ooops" style={{ maxWidth: '100%', display: 'block', margin: '0 auto', border: '3px solid #ccc', borderRadius: '20px' }} />*/}
             </div>
         );
     }

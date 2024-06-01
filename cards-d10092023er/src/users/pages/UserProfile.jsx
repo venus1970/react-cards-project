@@ -31,7 +31,7 @@ export default function UserProfile() {
   return (
     <Container>
       <PageHeader
-        title="User's Profile"
+        title="User Profile"
         subtitle="Here you can find all the user details"
       />
       <Box
