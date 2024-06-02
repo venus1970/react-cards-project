@@ -49,7 +49,7 @@ export default function EditUserPage() {
 
   return (
     <div>
-      <Box>
+      <Box sx={{ paddingTop: 4, marginBottom: 10 }}>
         <PageHeader
           title="Edit Account"
           subtitle="Here you can edit your account"
@@ -61,6 +61,7 @@ export default function EditUserPage() {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            margineBottom: "30px",
           }}
         >
            <Box

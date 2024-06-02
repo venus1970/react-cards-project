@@ -134,7 +134,7 @@ export default function FavCards() {
                     color="primary"
                     sx={{
                         marginTop: 8,
-                        marginBottom: 10,
+                        marginBottom: 20,
                         '& .MuiPaginationItem-root': {
                             borderRadius: '50%',
                             margin: '0 2px',

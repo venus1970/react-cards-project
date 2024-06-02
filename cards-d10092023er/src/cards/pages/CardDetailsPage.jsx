@@ -32,7 +32,8 @@ export default function CardDetailsPage() {
           display: "flex",
           flexDirection:{xs:"column",md:"initial"},
           justifyContent: "space-between",
-          color: isDark ? "white" : "black"
+          color: isDark ? "white" : "black",
+          marginBottom: 10,
           
           }}>
            <Box 

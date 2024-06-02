@@ -30,6 +30,7 @@ const AboutPage = () => {
         border: 5,
         borderColor: "white",
         textAlign: "center", // Added to center
+        marginBottom: "30px",
       }}
     >
       <PageHeader
@@ -48,7 +49,7 @@ const AboutPage = () => {
           border: "1px solid rgba(14, 122, 112, 0.2)",
           textAlign: "center", // Added to center align content
           marginTop: "30px",
-          marginBottom: "0px",
+          marginBottom: "60px",
           padding: "30px",
           }}
       >

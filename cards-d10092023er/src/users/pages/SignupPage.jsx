@@ -31,7 +31,8 @@ export default function SignupPage() {
 <div>
     <Box
     sx={{
-        paddingTop: 4
+        paddingTop: 4,
+        marginBottom: 10,
     }}
     >
      <PageHeader

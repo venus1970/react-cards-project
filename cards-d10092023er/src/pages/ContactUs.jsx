@@ -25,6 +25,7 @@ const ContactUs = () => {
         margin: "auto",
         width: "80%",
         textAlign: "center",
+        marginBottom: "30px",
       }}
     >
       <PageHeader title="Contact Us" subtitle="Get in touch with us" />
@@ -32,6 +33,7 @@ const ContactUs = () => {
        <Card
   sx={{
     marginTop: "30px",
+    marginBottom: "50px",
     backgroundColor: theme.palette.mode === 'dark' ? '#121212' : '#C9F8F3', 
     color: theme.palette.mode === 'dark' ? '#fff' : 'inherit',
     borderRadius: "10px",
@@ -49,6 +51,8 @@ const ContactUs = () => {
                 borderRadius: 5,
                 border: "2px solid red",
                 margin: "auto",
+                marginTop: "30px",
+                marginBottom: "30px",
               }}
             />
             <Divider sx={{ marginTop: "10px", marginBottom: "10px" }} />

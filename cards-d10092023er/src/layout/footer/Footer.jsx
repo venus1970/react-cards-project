@@ -17,14 +17,14 @@ export default function Footer() {
   const {isDark} = useTheme()
 
   return (
-   <Paper sx={{position:'sticky',bottom:0,left:0,right:0,zIndex:1,
-    boxShadow: '8px 4px 8px rgba(0, 0, 0, 0.25)', 
+   <Paper sx={{position:'fixed',bottom:0,left:0,right:0,zIndex:1,
+        boxShadow: "8px 4px 8px rgba(0, 0, 0, 0.25)",
         backgroundColor: isDark ? "light gray" : "pink", // Dark gray background color in dark mode
    }}>
       <BottomNavigation
         showLabels
         sx={{
-           
+          marginTop: "5px",
           backgroundColor: isDark ? "#282828" : "#FFC0CB", // Dark gray background color in dark mode
           "& .Mui-selected": { color: isDark ? "#87CEFA" : "#FF69B4" }, // Selected color
           "& .MuiBottomNavigationAction-root": {

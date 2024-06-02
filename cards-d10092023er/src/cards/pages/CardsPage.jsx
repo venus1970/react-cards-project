@@ -119,7 +119,7 @@ Dynamic Navigation: Navigate seamlessly through your business cards with an intu
   color="primary"
   sx={{
     marginTop: 8, // Adjust margin top as needed
-    marginBottom: 10, // Add margin bottom
+    marginBottom: 20, // Add margin bottom
     '& .MuiPaginationItem-root': {
       borderRadius: '50%', // Make pagination buttons circular
       margin: '0 2px', // Add margin between pagination buttons

@@ -38,8 +38,19 @@ export const editUser = async (userId, normalizeEditUser) => {
   }
 };
 
+export const changeStatusUser = async (userId) => {
+  try {
+    const { data } = await axios.patch(`${apiUrl}/${userId}`);
+    return data;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || error.message);
+  }
+};
+
 export const getAllUsers = async () => {
   try {
+   
+    console.log("hello");
     const { data } = await axios.get(apiUrl);
     return data;
   } catch (error) {

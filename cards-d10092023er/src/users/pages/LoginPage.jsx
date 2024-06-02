@@ -38,7 +38,7 @@ export default function LoginPage() {
       setBlocked(true);
       setSnack(
         "error",
-        "You have exceeded the maximum number of login attempts. Please try again later: after 5 minutes you will be able to log in again!"
+        "You are blocked: after 5 minutes you will be able to log in again!"
       );
       const blockTimer = setTimeout(() => {
         setFailedAttempts(0);
@@ -58,6 +58,7 @@ export default function LoginPage() {
         backgroundColor: theme.palette.mode === "dark" ? "#121212" : "#E0F7FA",
         color: theme.palette.mode === "dark" ? "#ffffff" : "#000000",
         paddingTop: 4,
+        marginBottom: 6,
       }}
     >
       <PageHeader title="Welcome to Login page" subtitle="Here you can login" />
@@ -94,7 +95,7 @@ export default function LoginPage() {
               marginBottom: "2px",
             }}
           >
-            *For security reasons, you have 3 consecutive failed login attempts. If your account will be temporarily blocking, please wait for the 24 hours before attempting to log in again.
+            *For security reasons, you have 3 consecutive failed login attempts. If your account will be temporarily blocking, please wait for the 5 minutes before attempting to log in again.
           </Typography>
           <Form
             title="login form"
