@@ -59,7 +59,7 @@ export default function EditCardPage() {
     [theme.breakpoints.down("xs")]: {
       paddingTop: 4,
     },
-    marginBottom: "100px", // Margin bottom added to form
+    marginBottom: "80px", // Margin bottom added to form
     marginTop: "20px", // Add margin above the form
      
   }}
