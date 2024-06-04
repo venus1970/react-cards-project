@@ -45,26 +45,37 @@ export default function EditCardPage() {
           title="Edit Card"
           subtitle="Here you can edit your card"
         />
-        <Container
-          sx={{
-            paddingTop: 8,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+       <Container
+  sx={{
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    [theme.breakpoints.down("md")]: {
+    },
+    [theme.breakpoints.down("sm")]: {
+      paddingTop: 4,
+    },
+    [theme.breakpoints.down("xs")]: {
+      paddingTop: 4,
+    },
+    marginBottom: "100px", // Margin bottom added to form
+    marginTop: "20px", // Add margin above the form
+     
+  }}
+>
           <Box
-            sx={{
-              bgcolor:
-                theme.palette.mode === "dark" ? "#000" : "#FFFFE0", // Black background color in dark mode
-              borderRadius: "8px",
-              boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
-              padding: "20px",
-              marginBottom: "40px", // Margin bottom added to form
-              border:
-                theme.palette.mode === "dark" ? "1px solid white" : "none", // White border in dark mode
-            }}
-          >
+  sx={{
+    bgcolor:
+      theme.palette.mode === "dark" ? "#000" : "#FFFFE0", // Black background color in dark mode
+    borderRadius: "8px",
+    boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
+   
+    border:
+      theme.palette.mode === "dark" ? "1px solid white" : "none", // White border in dark mode
+    marginTop: "20px", // Add margin above the form
+  }}
+>
             <Typography
               variant="h5"
               color={theme.palette.mode === "dark" ? "white" : "initial"} // White color in dark mode

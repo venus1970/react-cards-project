@@ -23,13 +23,7 @@ const useUsers = () => {
     useAxios();
     useEffect(() => {
       setQuery(searchParams.get("q") ?? "");
-  }, [searchParams]);
-
-  // useEffect(() => {
-  //   if(!user){
-  //     navigate(ROUTES.LOGIN)
-  //   }
-  // }, [user, navigate]);
+  }, [searchParams]); 
  
 useEffect(() => {
     if (allUsers) {
@@ -176,11 +170,7 @@ useEffect(() => {
         setRefreshKey((prevKey) => prevKey + 1);
       }, [handleGetAllUsers]);
       
-      // useEffect(() => {
-      //   handleRefresh();
-      // }, [handleRefresh]);
-
-    return { 
+      return { 
       user, 
       isLoading, 
       error, 
